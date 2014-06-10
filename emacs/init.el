@@ -24,8 +24,8 @@
 ;; For hi-lighted parens
 (load-library "paren")
 
-;; Default line length is 80 chars
-(setq-default fill-column 80)
+;; Default line length is 100 chars
+(setq-default fill-column 100)
 
 ;; Require a final newline in a file, to avoid confusing some tools
 (setq require-final-newline t)
@@ -57,13 +57,12 @@
 
 (defun rel-path (relative-path)
   "Return the full path of RELATIVE-PATH, relative to this function call."
-  (concat (file-name-directory (or load-file-name buffer-file-name)) file-relative-path))
+  (concat (file-name-directory (or load-file-name buffer-file-name)) relative-path))
 
 ;; yasnippets
 (add-to-list 'load-path (rel-path "plugins/yasnippet"))
 (require 'yasnippet)
-(yas/initialize)
-(yas/load-directory (rel-path "plugins/yasnippet/snippets"))
+(yas-global-mode 1)
 (setq yas/prompt-functions '(yas/ido-prompt yas/dropdown-prompt yas/completing-prompt yas/x-prompt yas/no-prompt))
 
 ;; js2 mode
@@ -71,7 +70,7 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 ;; turn on yas/minor-mode for js2-mode
-(add-hook 'js2-mode 'yas/minor-mode-on)
+(add-hook 'js2-mode 'yas-minor-mode-on)
 
 
 ;;
