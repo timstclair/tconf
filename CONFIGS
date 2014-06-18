@@ -1,0 +1,4 @@
+# List of configuration files to generate, and their inputs
+# See scripts/gen-config.sh
+
+.Xresources ! Xresources/
