@@ -1,4 +1,7 @@
 # List of configuration files to generate, and their inputs
 # See scripts/gen-config.sh
 
-.Xresources ! Xresources/
+#.Xresources ! Xresources/
+
+# bashrc must be first
+.bashrc # bash/bashrc bash/

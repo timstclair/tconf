@@ -36,18 +36,17 @@ gen-config() {
     echo
   fi
 
-  # Find exsting sources
-  SOURCES=""
+  # Expand sources
+  SOURCES=
   for SRC in $SOURCES_NAMES; do
     SRC=$TCONF/$SRC  # Everything relative to tconf
     if [[ -d $SRC ]]; then
-      echo "Directory:  $SRC"
       for F in $(ls $SRC); do
         SRCF=$TCONF/$(basename $SRC)/$F
-        SOURCES="$SOURCES $SRCF"
+        [ -e $SRCF ] && [[ ! $SOURCES =~ $SRCF ]] && \
+          SOURCES="$SOURCES $SRCF"
       done
     else
-      echo "File:  $SRC"
       [ -e $SRC ] && [[ ! $SOURCES =~ $SRC ]] && \
         SOURCES="$SOURCES $SRC"
     fi
@@ -55,8 +54,8 @@ gen-config() {
 
   # Add the local source
   LOCAL_SRC=$FILENAME$LOCAL_SUFFIX
-  [ -e $LOCAL_SRC ] && SOURCES_NAMES="$SOURCES_NAMES $LOCAL_SRC"
-
+  [ -e $LOCAL_SRC ] && [[ ! $SOURCES =~ $LOCAL_SRC ]] && \
+    SOURCES="$SOURCES $LOCAL_SRC"
 
   # Print header
   echo -e $COMMENT $WARNING_HDR > $FILENAME  # Overwrite file!
