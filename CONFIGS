@@ -2,3 +2,6 @@
 # See scripts/gen-config.sh
 
 .Xresources ! Xresources/
+
+# bashrc must be first
+.bashrc # bash/bashrc bash/
