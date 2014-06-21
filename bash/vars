@@ -5,6 +5,7 @@
 [ -z $TCONF ] && export TCONF=$HOME/tconf
 
 export EDITOR='emacs'
+export TERMINAL='urxvtcd'
 
 # Prompts!
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then

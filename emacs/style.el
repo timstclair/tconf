@@ -16,6 +16,5 @@
                     :background "gray80")
 
 ;; Highlighted line
-(global-hl-line-mode 1)
 (set-face-attribute 'hl-line nil
                     :background "gray15")

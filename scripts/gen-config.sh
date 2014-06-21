@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Parse arguments
+for FLAG in $@; do
+  case $FLAG in
+    --overwrite)
+      OVERWRITE=TRUE
+      ;;
+  esac
+done
+
 # The list of config files to generate
 CONFIGS_FILE=$TCONF/CONFIGS
 
@@ -25,7 +34,7 @@ gen-config() {
   fi
 
   # Confirm overwriting the destination file.
-  if [ -e $FILENAME ]; then
+  if [ -e $FILENAME ] && [ ! $OVERWRITE ]; then
     echo "WARNING: This will overwrite $FILENAME"
     read -p "Are you sure? (y/n) " -n 1 -r
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
