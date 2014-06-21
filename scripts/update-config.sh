@@ -17,6 +17,7 @@ fi
 
 echo "Coping device config..."
 cp -rv $TCONF/devices/$HOSTNAME/. ~/
+cp -rv $TCONF/i3/. ~/.i3
 
 echo "Generating modular configs..."
 $TCONF/scripts/gen-config.sh --overwrite
