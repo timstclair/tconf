@@ -1,4 +1,6 @@
 #!/bin/bash
+# Update the tconf configurations.
+# NOTE: TCONF should not change when running this.
 
 # Confirm overwriting the destination files.
 echo "WARNING: This will overwrite some dot files."
@@ -21,3 +23,8 @@ cp -rv $TCONF/i3/. ~/.i3
 
 echo "Generating modular configs..."
 $TCONF/scripts/gen-config.sh --overwrite
+
+# Check that symlink is up-to-date
+if [ "$TCONF" != "$HOME/.tconf" ]; then
+  ln -snf $TCONF $HOME/.tconf
+fi

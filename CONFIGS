@@ -3,5 +3,7 @@
 
 .Xresources ! Xresources/
 
-# bashrc must be first
-.bashrc # bash/bashrc bash/
+# Order matters
+.bashrc # bash/bashrc bash/vars bash/
+
+.i3/config # i3/config
