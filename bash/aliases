@@ -1,5 +1,9 @@
 # Shared aliases
 
+# scripts
+alias tconf-update="$TCONF/scripts/update-config.sh"
+alias tconf-gen="$TCONF/scripts/gen-config.sh"
+
 # enable color support
 test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 alias ls='ls --color=auto'

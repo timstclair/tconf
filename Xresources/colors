@@ -1,6 +1,7 @@
-! Base16 Default
-! Scheme: Chris Kempson (http://chriskempson.com)
-! Source: https://raw.githubusercontent.com/chriskempson/base16-xresources/master/base16-default.dark.xresources
+! Adapted from:
+!   Base16 Default
+!   Scheme: Chris Kempson (http://chriskempson.com)
+!   Source: https://raw.githubusercontent.com/chriskempson/base16-xresources/master/base16-default.dark.xresources
 
 #define base00 #151515
 #define base01 #202020
@@ -32,7 +33,7 @@
 *.color7:       base05
 *.color8:       base03
 *.color9:       base09
-*.color10:      base01
+*.color10:      base0B
 *.color11:      base02
 *.color12:      base04
 *.color13:      base06
