@@ -100,6 +100,17 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+bindsym $mod+Mod1+1 workspace 11
+bindsym $mod+Mod1+2 workspace 12
+bindsym $mod+Mod1+3 workspace 13
+bindsym $mod+Mod1+4 workspace 14
+bindsym $mod+Mod1+5 workspace 15
+bindsym $mod+Mod1+6 workspace 16
+bindsym $mod+Mod1+7 workspace 17
+bindsym $mod+Mod1+8 workspace 18
+bindsym $mod+Mod1+9 workspace 19
+bindsym $mod+Mod1+0 workspace 20
+bindsym $mod+w workspace 0:W
 bindsym $mod+m workspace 0:M
 
 # move focused container to workspace
@@ -114,6 +125,17 @@ bindsym $mod+Shift+ampersand move workspace 7
 bindsym $mod+Shift+asterisk move workspace 8
 bindsym $mod+Shift+parenleft move workspace 9
 bindsym $mod+Shift+parenright move workspace 10
+bindsym $mod+Mod1+Shift+exclam move workspace 11
+bindsym $mod+Mod1+Shift+at move workspace 12
+bindsym $mod+Mod1+Shift+numbersign move workspace 13
+bindsym $mod+Mod1+Shift+dollar move workspace 14
+bindsym $mod+Mod1+Shift+percent move workspace 15
+bindsym $mod+Mod1+Shift+asciicircum move workspace 16
+bindsym $mod+Mod1+Shift+ampersand move workspace 17
+bindsym $mod+Mod1+Shift+asterisk move workspace 18
+bindsym $mod+Mod1+Shift+parenleft move workspace 19
+bindsym $mod+Mod1+Shift+parenright move workspace 20
+bindsym $mod+Shift+W move workspace 0:W
 bindsym $mod+Shift+M move workspace 0:M
 
 # move workspace to other monitor
@@ -124,7 +146,7 @@ bindsym $mod+Shift+J reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 #bindsym $mod+Shift+P restart
 # exit i3 (logs you out of your X session)
-#bindsym $mod+Alt+BackSpace exit
+#bindsym $mod+Mod1+BackSpace exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

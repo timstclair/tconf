@@ -9,7 +9,8 @@
 (setq inhibit-startup-screen t)     ;; don't show welcome screen
 (setq inhibit-splash-screen t)      ;; don't show splash screen
 (setq initial-scratch-message "")   ;; empty initial scratch buffer
-(global-hl-line-mode 1)
+(when (display-graphic-p)
+  (global-hl-line-mode 1))
 
 ;; Use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
