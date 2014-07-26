@@ -52,7 +52,8 @@
 ;; Keybindings
 ;;
 (global-set-key (kbd "C-x g") 'goto-line)
-
+(global-set-key (kbd "C-c C-f") 'fill-paragraph)  ;; wrap comments to fill-column length
+(global-set-key (kbd "C-c r h") 'ff-find-other-file)  ;; toggle .cc and .h files
 
 ;;
 ;; Load plugins
