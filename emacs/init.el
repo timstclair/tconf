@@ -2,7 +2,7 @@
 ;; Global configurations
 ;;
 
-;; Mode settings
+;; UI settings
 (menu-bar-mode 0)                   ;; disable the menubaar
 (tool-bar-mode 0)                   ;; disable the toolbar
 (scroll-bar-mode 0)                 ;; disable scrollbars
@@ -62,6 +62,7 @@
 
 ;; Load configuration modules.
 (load (rel-path "style.el"))
+(load (rel-path "major-modes.el"))
 
 ;; yasnippets
 (add-to-list 'load-path (rel-path "plugins/yasnippet"))
