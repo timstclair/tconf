@@ -9,7 +9,8 @@
 (setq inhibit-startup-screen t)     ;; don't show welcome screen
 (setq inhibit-splash-screen t)      ;; don't show splash screen
 (setq initial-scratch-message "")   ;; empty initial scratch buffer
-(global-hl-line-mode 1)
+(when (display-graphic-p)
+  (global-hl-line-mode 1))
 
 ;; Use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
@@ -51,7 +52,8 @@
 ;; Keybindings
 ;;
 (global-set-key (kbd "C-x g") 'goto-line)
-
+(global-set-key (kbd "C-c C-f") 'fill-paragraph)  ;; wrap comments to fill-column length
+(global-set-key (kbd "C-c r h") 'ff-find-other-file)  ;; toggle .cc and .h files
 
 ;;
 ;; Load plugins

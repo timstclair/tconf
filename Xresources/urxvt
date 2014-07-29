@@ -11,8 +11,8 @@ URxvt*scrollBar:            false
 ! URxvt*scrollBar_right:    boolean
 ! URxvt*scrollBar_align:    mode
 ! URxvt*thickness:          number
-! URxvt*scrollTtyOutput:    boolean
-! URxvt*scrollTtyKeypress:  boolean
+URxvt*scrollTtyOutput:      false       ! Dont scroll on output
+URxvt*scrollTtyKeypress:    true
 ! URxvt*scrollWithBuffer:   boolean
 ! URxvt*inheritPixmap:      boolean
 ! URxvt*transparent:        boolean
@@ -57,7 +57,7 @@ URxvt*boldFont:             xft:DejaVu Sans Mono:bold:pixelsize=14
 ! URxvt*imFont:             fontname
 ! URxvt*title:              string
 ! URxvt*iconName:           string
-URxvt*saveLines:            500
+URxvt*saveLines:            10000
 ! URxvt*depth:              number
 ! URxvt*buffered:           boolean
 ! URxvt*transient-for:      windowid
