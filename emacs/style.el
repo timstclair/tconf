@@ -2,19 +2,22 @@
 
 ;; Mode-line (status bar)
 (set-face-attribute 'mode-line nil
-                    :foreground "gray80"
+                    :foreground "white"
                     :background "#009688"
                     :box '(:line-width -1 :color "grey40" :style nil))
 (set-face-attribute 'mode-line-inactive nil
-                    :foreground "gray60"
-                    :background "gray25"
+                    :foreground "white"
+                    :background "gray60"
                     :box '(:line-width -1 :color "grey40" :style nil))
 
 ;; Highlighted region
 (set-face-attribute 'region nil
                     :foreground "gray10"
-                    :background "gray80")
+                    :background "#ffc400")
 
 ;; Highlighted line
 (set-face-attribute 'hl-line nil
                     :background "gray95")
+
+(when (member "Liberation Mono" (font-family-list))
+  (set-face-attribute 'default nil :font "Liberation Mono-11"))

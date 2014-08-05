@@ -33,12 +33,12 @@
 #define bt_cyan          #00e5ff
 
 
-*background:              white
+*background:              bt_white
 *foreground:              bt_black
 *fading:                  20
 *fadeColor:               white
-*cursorColor:             cyan
-*pointerColorBackground:  bt_cyan
+*cursorColor:             bt_black
+*pointerColorBackground:  black
 *pointerColorForeground:  white
 
 *color0:                  black
@@ -48,7 +48,7 @@
 *color4:                  blue
 *color5:                  purple
 *color6:                  cyan
-*color7:                  white
+*color7:                  lt_gray
 *color8:                  bt_black
 *color9:                  bt_red
 *color10:                 bt_green
