@@ -73,11 +73,14 @@
 (setq yas/prompt-functions '(yas/ido-prompt yas/dropdown-prompt yas/completing-prompt yas/x-prompt yas/no-prompt))
 
 ;; js2 mode
-(add-to-list 'load-path (rel-path "plugins/js2"))
-(autoload 'js2-mode "js2" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-;; turn on yas/minor-mode for js2-mode
-(add-hook 'js2-mode 'yas-minor-mode-on)
+(if (>= emacs-major-version 24)
+  (progn
+    (add-to-list 'load-path (rel-path "plugins/js2-mode"))
+    (autoload 'js2-mode "js2-mode" nil t)
+    (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+    ;; turn on yas/minor-mode for js2-mode
+    (add-hook 'js2-mode 'yas-minor-mode-on)))
+
 
 
 ;;
