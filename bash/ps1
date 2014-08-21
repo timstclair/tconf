@@ -1,0 +1,80 @@
+# Custom PS1
+
+fancy_prompt() {
+
+# Dynamic variables
+local DATE_VAR='\d'
+local TIME_VAR='\t'
+local PWD_VAR='\w'
+local SHELL_VAR='\s'
+local USER_VAR='\u'
+local HOST_VAR='\h'
+
+# Colors
+local BLACK='\e[0;30m'
+local RED='\e[0;31m'
+local GREEN='\e[0;32m'
+local YELLOW='\e[0;33m'
+local BLUE='\e[0;34m'
+local PURPLE='\e[0;35m'
+local CYAN='\e[0;36m'
+local WHITE='\e[0;37m'
+
+local B_BLACK='\e[1;30m'
+local B_RED='\e[1;31m'
+local B_GREEN='\e[1;32m'
+local B_YELLOW='\e[1;33m'
+local B_BLUE='\e[1;34m'
+local B_PURPLE='\e[1;35m'
+local B_CYAN='\e[1;36m'
+local B_WHITE='\e[1;37m'
+
+local BLACK_B='\e[40m'
+local RED_B='\e[41m'
+local GREEN_B='\e[42m'
+local YELLOW_B='\e[43m'
+local BLUE_B='\e[44m'
+local PURPLE_B='\e[45m'
+local CYAN_B='\e[46m'
+local WHITE_B='\e[47m'
+
+local RESET='\e[m'
+
+# Change color based on success of previous command
+function color_success() {
+  if [ $? = 0 ]; then
+    echo -en '\e[0;32m'  # Green
+  else
+    echo -en '\e[0;31m'  # Red
+  fi
+}
+
+# Conditionally print user & host name
+function user_host() {
+  if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    echo -en " <${USER}@${HOSTNAME}>"
+  fi
+}
+
+local PS1L1="\[\$(color_success)\][$TIME_VAR]\[$RESET\]\$(user_host)"
+local PS1L2="\[$B_BLACK\]${PWD_VAR}: \[$RESET\]"
+PS1="$PS1L1\n\n$PS1L2"
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+}
+
+if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+  # Color prompt
+  fancy_prompt
+else
+  # Boring prompt
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi

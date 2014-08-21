@@ -2,7 +2,7 @@
 ;; Global configurations
 ;;
 
-;; Mode settings
+;; UI settings
 (menu-bar-mode 0)                   ;; disable the menubaar
 (tool-bar-mode 0)                   ;; disable the toolbar
 (scroll-bar-mode 0)                 ;; disable scrollbars
@@ -63,7 +63,12 @@
   (concat (file-name-directory (or load-file-name buffer-file-name)) relative-path))
 
 ;; Load configuration modules.
+<<<<<<< HEAD
 ;; (load (rel-path "style.el"))
+=======
+(load (rel-path "style.el"))
+(load (rel-path "major-modes.el"))
+>>>>>>> ba3b4bfd94f4e4286713aaa919a4ada268830e90
 
 ;; yasnippets
 (add-to-list 'load-path (rel-path "plugins/yasnippet"))
@@ -72,11 +77,14 @@
 (setq yas/prompt-functions '(yas/ido-prompt yas/dropdown-prompt yas/completing-prompt yas/x-prompt yas/no-prompt))
 
 ;; js2 mode
-(add-to-list 'load-path (rel-path "plugins/js2"))
-(autoload 'js2-mode "js2" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-;; turn on yas/minor-mode for js2-mode
-(add-hook 'js2-mode 'yas-minor-mode-on)
+(if (>= emacs-major-version 24)
+  (progn
+    (add-to-list 'load-path (rel-path "plugins/js2-mode"))
+    (autoload 'js2-mode "js2-mode" nil t)
+    (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+    ;; turn on yas/minor-mode for js2-mode
+    (add-hook 'js2-mode 'yas-minor-mode-on)))
+
 
 
 ;;

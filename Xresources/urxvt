@@ -64,7 +64,7 @@ URxvt*saveLines:            10000
 ! URxvt*override-redirect:  boolean
 ! URxvt*hold:               boolean
 ! URxvt*externalBorder:     number
-! URxvt*internalBorder:     number
+URxvt*internalBorder:       8
 ! URxvt*borderLess:         boolean
 ! URxvt*lineSpace:          number
 URxvt*letterSpace:          -2          ! Dont space letters out so much
