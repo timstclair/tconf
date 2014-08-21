@@ -63,7 +63,7 @@
   (concat (file-name-directory (or load-file-name buffer-file-name)) relative-path))
 
 ;; Load configuration modules.
-(load (rel-path "style.el"))
+;; (load (rel-path "style.el"))
 
 ;; yasnippets
 (add-to-list 'load-path (rel-path "plugins/yasnippet"))
@@ -107,3 +107,15 @@
   (setq backup-dir dir)
   (make-directory backup-dir t)
   (setq backup-directory-alist (list (cons "." backup-dir))))
+
+;; Disable backups for remote files.
+;; TODO: backup to the remote location
+(setq backup-enable-predicate
+      (lambda (name)
+        (and (normal-backup-enable-predicate name)
+             (not (string-match tramp-file-name-regexp name)))))
+
+;; Disable auto save for remote files.
+(require 'tramp)
+(defun tramp-set-auto-save ()
+  (auto-save-mode -1))
