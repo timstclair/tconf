@@ -63,12 +63,8 @@
   (concat (file-name-directory (or load-file-name buffer-file-name)) relative-path))
 
 ;; Load configuration modules.
-<<<<<<< HEAD
-;; (load (rel-path "style.el"))
-=======
 (load (rel-path "style.el"))
 (load (rel-path "major-modes.el"))
->>>>>>> ba3b4bfd94f4e4286713aaa919a4ada268830e90
 
 ;; yasnippets
 (add-to-list 'load-path (rel-path "plugins/yasnippet"))
