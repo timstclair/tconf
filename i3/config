@@ -89,7 +89,6 @@ bindsym $mod+Shift+space move scratchpad
 bindsym $mod+space scratchpad show
 
 # switch to workspace
-bindsym $mod+grave workspace 0:~
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
@@ -110,11 +109,7 @@ bindsym $mod+Mod1+7 workspace 17
 bindsym $mod+Mod1+8 workspace 18
 bindsym $mod+Mod1+9 workspace 19
 bindsym $mod+Mod1+0 workspace 20
-bindsym $mod+w workspace 0:W
-bindsym $mod+m workspace 0:M
-
 # move focused container to workspace
-bindsym $mod+Shift+asciitilde move workspace 0:~
 bindsym $mod+Shift+exclam move workspace 1
 bindsym $mod+Shift+at move workspace 2
 bindsym $mod+Shift+numbersign move workspace 3
@@ -135,8 +130,20 @@ bindsym $mod+Mod1+Shift+ampersand move workspace 17
 bindsym $mod+Mod1+Shift+asterisk move workspace 18
 bindsym $mod+Mod1+Shift+parenleft move workspace 19
 bindsym $mod+Mod1+Shift+parenright move workspace 20
+
+# Special purpose work spaces
+# Terminal
+bindsym $mod+grave workspace 0:~
+bindsym $mod+Shift+asciitilde move workspace 0:~
+# Web
+bindsym $mod+w workspace 0:W
 bindsym $mod+Shift+W move workspace 0:W
+# Mail
+bindsym $mod+m workspace 0:M
 bindsym $mod+Shift+M move workspace 0:M
+# Notes
+bindsym $mod+b workspace 0:N
+bindsym $mod+Shift+B move workspace 0:N
 
 # move workspace to other monitor
 bindsym $mod+Shift+underscore move workspace to output right
