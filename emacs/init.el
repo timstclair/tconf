@@ -2,6 +2,11 @@
 ;; Global configurations
 ;;
 
+;; Define some functions
+(defun rel-path (relative-path)
+  "Return the full path of RELATIVE-PATH, relative to this function call."
+  (concat (file-name-directory (or load-file-name buffer-file-name)) relative-path))
+
 ;; UI settings
 (menu-bar-mode 0)                   ;; disable the menubaar
 (tool-bar-mode 0)                   ;; disable the toolbar
@@ -9,8 +14,12 @@
 (setq inhibit-startup-screen t)     ;; don't show welcome screen
 (setq inhibit-splash-screen t)      ;; don't show splash screen
 (setq initial-scratch-message "")   ;; empty initial scratch buffer
+
+;; Graphical mode settings
 (when (display-graphic-p)
-  (global-hl-line-mode 1))
+  (global-hl-line-mode 1)           ;; highlight the current line
+  (load (rel-path "style.el")))
+
 
 ;; Use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
@@ -58,12 +67,8 @@
 ;;
 ;; Load plugins
 ;;
-(defun rel-path (relative-path)
-  "Return the full path of RELATIVE-PATH, relative to this function call."
-  (concat (file-name-directory (or load-file-name buffer-file-name)) relative-path))
 
 ;; Load configuration modules.
-(load (rel-path "style.el"))
 (load (rel-path "major-modes.el"))
 
 ;; yasnippets
