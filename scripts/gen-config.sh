@@ -44,6 +44,9 @@ gen-config() {
     fi
     echo
   fi
+  if [ -e $FILENAME ]; then
+    mv -v $FILENAME ${FILENAME}~
+  fi
 
   # Expand sources
   SOURCES=

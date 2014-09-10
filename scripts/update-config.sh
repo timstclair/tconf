@@ -17,10 +17,26 @@ if [ ! $HOSTNAME ]; then
   exit -1
 fi
 
-echo "Coping device config..."
-cp -rv $TCONF/devices/$HOSTNAME/. ~/
-cp -rv $TCONF/i3/. ~/.i3
+function backup_copy() {
+  local SRC=$1
+  local DST=$2
+  if [ -e $SRC ]; then
+    if [ ! -e $DST ]; then
+      mkdir $DST
+    fi
+    for F in $(ls -A $SRC); do
+      [ -e $DST/$F ] && mv -v $DST/$F $DST/${F}~ # Make a backup
+      cp -rv $SRC/$F $DST/$F
+    done
+  fi
+}
 
+echo
+echo "Coping device config..."
+backup_copy $TCONF/devices/$HOSTNAME ~
+backup_copy $TCONF/i3/. ~/.i3
+
+echo
 echo "Generating modular configs..."
 $TCONF/scripts/gen-config.sh --overwrite
 
