@@ -12,11 +12,6 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 fi
 echo
 
-if [ ! $HOSTNAME ]; then
-  echo "Hostname not set."
-  exit -1
-fi
-
 function backup_copy() {
   local SRC=$1
   local DST=$2
@@ -32,8 +27,14 @@ function backup_copy() {
 }
 
 echo
-echo "Coping device config..."
-backup_copy $TCONF/devices/$HOSTNAME ~
+if [ $DEVICE_NAME ]; then
+  echo "Coping device config..."
+  backup_copy $TCONF/devices/$DEVICE_NAME ~
+else
+  echo '$DEVICE_NAME not set'
+fi
+
+# Copy directory configs
 backup_copy $TCONF/i3/. ~/.i3
 
 echo
