@@ -15,11 +15,8 @@
 (setq inhibit-splash-screen t)      ;; don't show splash screen
 (setq initial-scratch-message "")   ;; empty initial scratch buffer
 
-;; Graphical mode settings
-(when (display-graphic-p)
-  (global-hl-line-mode 1)           ;; highlight the current line
-  (load (rel-path "style.el")))
-
+;; UI styles
+(load (rel-path "style.el"))
 
 ;; Use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
