@@ -1,6 +1,7 @@
 ;;
 ;; Customizations for major modes
 ;;
+(provide 'major-modes)
 
 ;;
 ;; asm-mode
