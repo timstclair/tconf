@@ -2,7 +2,7 @@
 
 ;; Mode-line (status bar)
 (set-face-attribute 'mode-line nil
-                    :foreground "white"
+                    :foreground "#ffffff"
                     :background "#009688"
                     :box '(:line-width -1 :color "grey40" :style nil))
 (set-face-attribute 'mode-line-inactive nil
@@ -16,6 +16,7 @@
                     :background "#ffc400")
 
 ;; Highlighted line
+(global-hl-line-mode 1)           ;; highlight the current line
 (set-face-attribute 'hl-line nil
                     :background "gray95")
 

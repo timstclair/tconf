@@ -88,8 +88,8 @@ URxvt*iso14755_52:          False
 ! URxvt*keysym.sym:         keysym
 
 ! Extensions
-URxvt.perl-ext-common:      default,matcher
+URxvt*perl-ext-common:      default,matcher
 
 ! Clickable URLs
-URxvt.urlLauncher:          google-chrome
-URxvt.matcher.button:       1
+URxvt*urlLauncher:          google-chrome
+URxvt*matcher.button:       1

@@ -7,6 +7,9 @@ set $mod Mod4
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 font pango:DejaVu Sans Mono 10
 
+# Set the desktop background
+exec --no-startup-id feh --bg-fill .wallpapers/default
+
 # Hide title bars
 new_window 1pixel
 
@@ -26,6 +29,12 @@ bindsym $mod+Scroll_Lock exec ~/.tconf/scripts/toggle_dvorak.sh
 
 # Lockscreen
 bindsym $mod+Escape exec i3lock -c 000000
+# Logout
+bindsym $mod+Shift+Escape exec ~/.tconf/scripts/shutdown.sh -e
+# Shutdown
+bindsym $mod+Mod1+Escape exec ~/.tconf/scripts/shutdown.sh -s
+# Restart
+bindsym $mod+Mod1+Shift+Escape exec ~/.tconf/scripts/shutdown.sh -r
 
 # kill focused window
 bindsym $mod+Shift+quotedbl kill
