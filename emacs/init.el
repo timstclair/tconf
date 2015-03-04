@@ -86,7 +86,10 @@
     ;; turn on yas/minor-mode for js2-mode
     (add-hook 'js2-mode 'yas-minor-mode-on)))
 
-
+;; rust mode
+(add-to-list 'load-path (rel-path "plugins/rust-mode"))
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
 ;;
 ;; Create directories for backup / autosave.
