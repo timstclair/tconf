@@ -3,7 +3,7 @@
 ;;
 
 ;; Define some functions
-(defun rel-path (relative-path)
+(defun rel-path (relative-path)  ;; TODO replace with (file-relative-name)
   "Return the full path of RELATIVE-PATH, relative to this function call."
   (concat (file-name-directory (or load-file-name buffer-file-name)) relative-path))
 
@@ -23,9 +23,10 @@
 (setq-default tab-width 2)
 
 ;; Show bad ws
-(require 'whitespace)
-(setq show-ws-toggle-show-trailing-whitespace t)
-(setq show-ws-toggle-show-tabs t)
+;; (require 'whitespace)
+;; (setq show-ws-toggle-show-trailing-whitespace t)
+;; (setq show-ws-toggle-show-tabs t)
+(setq show-trailing-whitespace t)
 
 ;; Column numbers
 (column-number-mode 1)
@@ -128,3 +129,22 @@
 (require 'tramp)
 (defun tramp-set-auto-save ()
   (auto-save-mode -1))
+
+
+;;
+;; Python settings
+;;
+
+;; Run pyflakes with flymake
+;; http://stackoverflow.com/a/1257306/347942
+(when (load "flymake" t)
+  (defun flymake-pyflakes-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "epylint" (list local-file))))
+  (add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pyflakes-init)))
+(add-hook 'python-mode-hook 'flymake-mode)
