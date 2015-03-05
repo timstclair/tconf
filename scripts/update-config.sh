@@ -29,13 +29,14 @@ function backup_copy() {
 echo
 if [ $DEVICE_NAME ]; then
   echo "Coping device config..."
-  backup_copy $TCONF/devices/$DEVICE_NAME ~
+  backup_copy $TCONF/devices/$DEVICE_NAME $HOME/
 else
   echo '$DEVICE_NAME not set'
 fi
 
 # Copy directory configs
-backup_copy $TCONF/i3/. ~/.i3
+backup_copy $TCONF/i3/. $HOME/.i3
+backup_copy $TCONF/dots/.[!.]* $HOME/
 
 echo
 echo "Generating modular configs..."

@@ -10,8 +10,11 @@ setxkbmap dvorak -option ctrl:nocaps
 xrandr --output DP-0 --primary
 xrandr --output DVI-I-1 --rotate left --right-of DP-0
 
-xsetroot -solid "#101010"
+xrdb -merge ~/.Xresources
 
-urxvtd -q -o -f
+xsetroot -solid "#101010" &
+
+# Start xterm daemon
+urxvtd -q -o -f &
 
 exec i3

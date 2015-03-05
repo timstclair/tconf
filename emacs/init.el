@@ -3,7 +3,7 @@
 ;;
 
 ;; Define some functions
-(defun rel-path (relative-path)
+(defun rel-path (relative-path)  ;; TODO replace with (file-relative-name)
   "Return the full path of RELATIVE-PATH, relative to this function call."
   (concat (file-name-directory (or load-file-name buffer-file-name)) relative-path))
 
@@ -23,9 +23,10 @@
 (setq-default tab-width 2)
 
 ;; Show bad ws
-(require 'whitespace)
-(setq show-ws-toggle-show-trailing-whitespace t)
-(setq show-ws-toggle-show-tabs t)
+;; (require 'whitespace)
+;; (setq show-ws-toggle-show-trailing-whitespace t)
+;; (setq show-ws-toggle-show-tabs t)
+(setq-default show-trailing-whitespace t)
 
 ;; Column numbers
 (column-number-mode 1)
@@ -53,6 +54,11 @@
 ;; Use y-n instead of yes-no for prompts
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;;
+;; Disable annoying commands.
+;;
+(put 'downcase-region 'disabled t)    ;; disable C-x C-l
+
 
 ;;
 ;; Keybindings
@@ -60,6 +66,7 @@
 (global-set-key (kbd "C-x g") 'goto-line)
 (global-set-key (kbd "C-c C-f") 'fill-paragraph)  ;; wrap comments to fill-column length
 (global-set-key (kbd "C-c r h") 'ff-find-other-file)  ;; toggle .cc and .h files
+(global-unset-key (kbd "C-z"))  ;; Never stop on C-z
 
 ;;
 ;; Load plugins
@@ -83,7 +90,10 @@
     ;; turn on yas/minor-mode for js2-mode
     (add-hook 'js2-mode 'yas-minor-mode-on)))
 
-
+;; rust mode
+(add-to-list 'load-path (rel-path "plugins/rust-mode"))
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
 ;;
 ;; Create directories for backup / autosave.
@@ -125,3 +135,22 @@
 (require 'tramp)
 (defun tramp-set-auto-save ()
   (auto-save-mode -1))
+
+
+;;
+;; Python settings
+;;
+
+;; Run pyflakes with flymake
+;; http://stackoverflow.com/a/1257306/347942
+(when (load "flymake" t)
+  (defun flymake-pyflakes-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "epylint" (list local-file))))
+  (add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pyflakes-init)))
+(add-hook 'python-mode-hook 'flymake-mode)
