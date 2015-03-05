@@ -26,7 +26,7 @@
 ;; (require 'whitespace)
 ;; (setq show-ws-toggle-show-trailing-whitespace t)
 ;; (setq show-ws-toggle-show-tabs t)
-(setq show-trailing-whitespace t)
+(setq-default show-trailing-whitespace t)
 
 ;; Column numbers
 (column-number-mode 1)
