@@ -55,9 +55,9 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;;
-;; Disable annoying commands.
+;; Unbind annoying commands.
 ;;
-(put 'downcase-region 'disabled t)    ;; disable C-x C-l
+(global-unset-key (kbd "C-x C-l"))  ;; downcase-region
 
 
 ;;
