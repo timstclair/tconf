@@ -135,6 +135,18 @@
 (defun tramp-set-auto-save ()
   (auto-save-mode -1))
 
+;;
+;; General programming settings
+;;
+
+;; From https://github.com/bbatsov/prelude/blob/master/modules/prelude-programming.el
+(defun font-lock-comment-annotations ()
+  "Highlight comment annotations."
+  (font-lock-add-keywords
+   nil '(("\\<\\(\\(FIX\\(ME\\)?\\|TODO\\):\\)"
+          1 font-lock-warning-face t))))
+(add-hook 'prog-mode-hook 'font-lock-comment-annotations)
+
 
 ;;
 ;; Python settings
