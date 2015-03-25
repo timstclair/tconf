@@ -61,18 +61,17 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;;
-;; Disable annoying commands.
-;;
-(put 'downcase-region 'disabled t)    ;; disable C-x C-l
-
-
-;;
 ;; Keybindings
 ;;
+
 (global-set-key (kbd "C-x g") 'goto-line)
 (global-set-key (kbd "C-c C-f") 'fill-paragraph)  ;; wrap comments to fill-column length
 (global-set-key (kbd "C-c r h") 'ff-find-other-file)  ;; toggle .cc and .h files
-(global-unset-key (kbd "C-z"))  ;; Never stop on C-z
+(global-set-key (kbd "C-c c") 'comment-region)
+
+;; Unbind annoying commands.
+(global-unset-key (kbd "C-z"))      ;; Never stop on C-z
+(global-unset-key (kbd "C-x C-l"))  ;; downcase-region
 
 ;;
 ;; Load plugins

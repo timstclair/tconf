@@ -4,5 +4,5 @@
 # from default.
 [ -z $TCONF ] && export TCONF=$HOME/tconf
 
-export EDITOR='emacs'
+export EDITOR='ec'
 export TERMINAL='urxvtcd'
