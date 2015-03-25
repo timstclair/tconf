@@ -2,6 +2,12 @@
 ;; Global configurations
 ;;
 
+;; Load package manager
+(require 'package)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
 ;; Define some functions
 (defun rel-path (relative-path)  ;; TODO replace with (file-relative-name)
   "Return the full path of RELATIVE-PATH, relative to this function call."
@@ -154,3 +160,10 @@
   (add-to-list 'flymake-allowed-file-name-masks
                '("\\.py\\'" flymake-pyflakes-init)))
 (add-hook 'python-mode-hook 'flymake-mode)
+
+
+;;
+;; Haskell settings
+;;
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
