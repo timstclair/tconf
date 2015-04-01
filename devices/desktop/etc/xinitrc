@@ -19,8 +19,8 @@ xrandr --output DVI-I-1 --auto &
 xrandr --output HDMI-1 --off &
 
 # Start some background programs
-emacs --daemon
-google-chrome --no-startup-window
+emacs --daemon &
+google-chrome --no-startup-window &
 
 exec i3
 # exec i3 -V >> ~/.i3/i3log 2>&1 # debug

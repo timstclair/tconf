@@ -2,6 +2,12 @@
 ;; Global configurations
 ;;
 
+;; Load package manager
+(require 'package)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
 ;; Define some functions
 (defun rel-path (relative-path)  ;; TODO replace with (file-relative-name)
   "Return the full path of RELATIVE-PATH, relative to this function call."
@@ -26,7 +32,7 @@
 ;; (require 'whitespace)
 ;; (setq show-ws-toggle-show-trailing-whitespace t)
 ;; (setq show-ws-toggle-show-tabs t)
-(setq show-trailing-whitespace t)
+(setq-default show-trailing-whitespace t)
 
 ;; Column numbers
 (column-number-mode 1)
@@ -54,17 +60,25 @@
 ;; Use y-n instead of yes-no for prompts
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-
 ;;
 ;; Keybindings
 ;;
+
 (global-set-key (kbd "C-x g") 'goto-line)
 (global-set-key (kbd "C-c C-f") 'fill-paragraph)  ;; wrap comments to fill-column length
 (global-set-key (kbd "C-c r h") 'ff-find-other-file)  ;; toggle .cc and .h files
+(global-set-key (kbd "C-c c") 'comment-region)
+
+;; Unbind annoying commands.
+(global-unset-key (kbd "C-z"))      ;; Never stop on C-z
+(global-unset-key (kbd "C-x C-l"))  ;; downcase-region
 
 ;;
 ;; Load plugins
 ;;
+
+;; Always use flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Load configuration modules.
 (load (rel-path "major-modes.el"))
@@ -130,21 +144,54 @@
 (defun tramp-set-auto-save ()
   (auto-save-mode -1))
 
+;;
+;; General programming settings
+;;
+
+;; From https://github.com/bbatsov/prelude/blob/master/modules/prelude-programming.el
+(defun font-lock-comment-annotations ()
+  "Highlight comment annotations."
+  (font-lock-add-keywords
+   nil '(("\\<\\(\\(FIX\\(ME\\)?\\|TODO\\):\\)"
+          1 font-lock-warning-face t))))
+(add-hook 'prog-mode-hook 'font-lock-comment-annotations)
+
 
 ;;
 ;; Python settings
 ;;
 
-;; Run pyflakes with flymake
-;; http://stackoverflow.com/a/1257306/347942
-(when (load "flymake" t)
-  (defun flymake-pyflakes-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list "epylint" (list local-file))))
-  (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-pyflakes-init)))
-(add-hook 'python-mode-hook 'flymake-mode)
+(add-hook 'python-mode-hook 'flycheck-mode)
+
+
+;;
+;; Haskell settings
+;;
+
+;; See http://sritchie.github.io/2011/09/25/haskell-in-emacs/
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'flycheck-mode)
+
+;; Ignore compiled Haskell files in filename completions
+(add-to-list 'completion-ignored-extensions ".hi")
+
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
+
+;;
+;; sh-mode settings (shell script)
+;;
+
+(setq sh-basic-offset 2)
+(setq sh-indentation 2)
+
+
+;;
+;; Packages
+;; TODO: Move this section elsewhere
+;; haskell-mode
+;; flycheck
+;; flycheck-haskell
+;; go-mode

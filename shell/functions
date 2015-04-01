@@ -1,0 +1,5 @@
+
+# Calculator functionality
+=() {
+    bc -l <<<"scale=10;$@"
+}

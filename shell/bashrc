@@ -1,5 +1,8 @@
 # General bash configuration.
 
+SHELL_NAME=bash
+export TCONF=$HOME/tconf
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -29,3 +32,17 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
   . /etc/bash_completion
 fi
+
+load() {
+  [ -f "$1" ] && . "$1"
+}
+
+# Load modular config
+MODULES="vars functions aliases"
+for MODULE in $MODULES; do
+    load "$TCONF/shell/$MODULE"
+done
+
+# Load local configs
+load "$TCONF/local/shell/bashrc"
+load "$TCONF/priv/shell/bashrc"
