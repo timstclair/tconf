@@ -1,0 +1,1 @@
+split apart init.el into mode specific settings. For inspiration, see https://github.com/jhamrick/emacs/tree/master/.emacs.d/settings
