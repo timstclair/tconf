@@ -1,0 +1,5 @@
+# For audio to work
+exec --no-startup-id gnome-sound-applet
+
+# Attempt to fix mouse
+exec --no-startup-id /usr/local/google/home/stclair/scripts/fix_mouse_buttons.sh

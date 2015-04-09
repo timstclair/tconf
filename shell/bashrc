@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # General bash configuration.
 
 SHELL_NAME=bash
@@ -33,16 +35,21 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
   . /etc/bash_completion
 fi
 
+# Load the config if it exists.
 load() {
   [ -f "$1" ] && . "$1"
 }
 
 # Load modular config
-MODULES="vars functions aliases"
+MODULES="vars functions aliases ps1"
 for MODULE in $MODULES; do
     load "$TCONF/shell/$MODULE"
+    load "$TCONF/local/shell/$MODULE"
+    load "$TCONF/priv/shell/$MODULE"
 done
 
 # Load local configs
 load "$TCONF/local/shell/bashrc"
 load "$TCONF/priv/shell/bashrc"
+
+: # Clear status

@@ -209,7 +209,7 @@ bindsym $mod+Shift+P mode "resize"
 bar {
   # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
   font pango:DejaVu Sans Mono 10
-  status_command i3status -c ~/.i3/i3status.conf
+  status_command i3status -c ~/tconf/i3/i3status.conf
   position top
 
   # Order named workspaces
