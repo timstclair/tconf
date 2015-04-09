@@ -1,4 +1,11 @@
-\.#*
+# symlink
+local
+
+# Private directory.
+priv
+
+# Generated files
+.gen_files
 
 # Mac specific
 **/.DS_Store
