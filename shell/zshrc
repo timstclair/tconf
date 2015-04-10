@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _expand _complete _ignored
@@ -55,6 +57,21 @@ $ROOT$PATH$S "
 }
 PROMPT=$(custom_prompt)
 
+# Load the config if it exists.
+load() {
+  if [ -f "$1" ]; then
+    . "$1"
+  fi
+}
 
-[ -f $TCONF/bash/vars ] && source $TCONF/bash/vars
-[ -f $TCONF/bash/aliases ] && source $TCONF/bash/aliases
+# Load modular config
+MODULES="vars functions aliases"
+for MODULE in $MODULES; do
+    load "$TCONF/shell/$MODULE"
+    load "$TCONF/local/shell/$MODULE"
+    load "$TCONF/priv/shell/$MODULE"
+done
+
+# Load local configs
+load "$TCONF/local/shell/bashrc"
+load "$TCONF/priv/shell/bashrc"

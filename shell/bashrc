@@ -37,7 +37,9 @@ fi
 
 # Load the config if it exists.
 load() {
-  [ -f "$1" ] && . "$1"
+  if [ -f "$1" ]; then
+    . "$1"
+  fi
 }
 
 # Load modular config
@@ -51,5 +53,3 @@ done
 # Load local configs
 load "$TCONF/local/shell/bashrc"
 load "$TCONF/priv/shell/bashrc"
-
-: # Clear status
