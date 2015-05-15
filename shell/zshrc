@@ -17,6 +17,8 @@ setopt appendhistory autocd extendedglob notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
+setopt shwordsplit  # Treat words in string as array
+
 # Set the non-alphanumeric characters which zsh treats as part of a word.
 export WORDCHARS=''
 
