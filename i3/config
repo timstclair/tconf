@@ -26,6 +26,7 @@ bindsym $mod+Shift+F1 exec emacs
 
 # Toggle dvorak
 bindsym $mod+Scroll_Lock exec ~/.tconf/scripts/toggle_dvorak.sh
+exec --no-startup-id setxkbmap dvorak
 
 # Lockscreen
 bindsym $mod+Escape exec i3lock -c 000000
@@ -35,6 +36,11 @@ bindsym $mod+Shift+Escape exec ~/.tconf/scripts/shutdown.sh -e
 bindsym $mod+Mod1+Escape exec ~/.tconf/scripts/shutdown.sh -s
 # Restart
 bindsym $mod+Mod1+Shift+Escape exec ~/.tconf/scripts/shutdown.sh -r
+
+# Screenshot (print screen)
+bindsym Print exec scrot -e 'mv $f ~/tmp/$f'
+# Select Screenshot
+bindsym Shift+Print exec scrot -s -e 'mv $f ~/tmp/$f'
 
 # kill focused window
 bindsym $mod+Shift+quotedbl kill

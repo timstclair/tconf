@@ -1,2 +1,6 @@
 export DEVICE=work_desk
 export DEVICE_NAME=$DEVICE # Deprecated
+
+# Go project directory
+export GOPATH=$HOME/goproj
+export PATH=$PATH:$GOPATH/bin

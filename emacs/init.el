@@ -2,6 +2,14 @@
 ;; Global configurations
 ;;
 
+;; UI settings
+(menu-bar-mode 0)                   ;; disable the menubaar
+(tool-bar-mode 0)                   ;; disable the toolbar
+(scroll-bar-mode 0)                 ;; disable scrollbars
+(setq inhibit-startup-screen t)     ;; don't show welcome screen
+(setq inhibit-splash-screen t)      ;; don't show splash screen
+(setq initial-scratch-message "")   ;; empty initial scratch buffer
+
 ;; Load package manager
 (require 'package)
 (add-to-list 'package-archives
@@ -12,14 +20,6 @@
 (defun rel-path (relative-path)  ;; TODO replace with (file-relative-name)
   "Return the full path of RELATIVE-PATH, relative to this function call."
   (concat (file-name-directory (or load-file-name buffer-file-name)) relative-path))
-
-;; UI settings
-(menu-bar-mode 0)                   ;; disable the menubaar
-(tool-bar-mode 0)                   ;; disable the toolbar
-(scroll-bar-mode 0)                 ;; disable scrollbars
-(setq inhibit-startup-screen t)     ;; don't show welcome screen
-(setq inhibit-splash-screen t)      ;; don't show splash screen
-(setq initial-scratch-message "")   ;; empty initial scratch buffer
 
 ;; UI styles
 (load (rel-path "style.el"))

@@ -1,5 +1,6 @@
 # For audio to work
 exec --no-startup-id gnome-sound-applet
+exec --no-startup-id emacs --daemon
 
 # Attempt to fix mouse
 exec --no-startup-id /usr/local/google/home/stclair/scripts/fix_mouse_buttons.sh

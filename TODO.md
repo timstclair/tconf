@@ -19,3 +19,7 @@ Learning
 --------
 - Better git knowledge
 - Write urxvt pearl plugins
+
+Misc
+----
+- Xresources: use #inlcude rather than combine (https://wiki.archlinux.org/index.php/X_resources#Include_files)
