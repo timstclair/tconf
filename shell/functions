@@ -1,5 +1,7 @@
 
+
 # Calculator functionality
-=() {
-    bc -l <<<"scale=10;$@"
-}
+# FIXME: Not zsh compatible
+# =() {
+#     bc -l <<<"scale=10;$@"
+# }
