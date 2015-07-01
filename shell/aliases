@@ -5,8 +5,6 @@ alias tconf-update="$TCONF/scripts/update-config.sh"
 alias tconf-gen="$TCONF/scripts/gen-config.sh"
 
 # enable color support
-which dircolors > /dev/null && \
-  (test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)")
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'

@@ -39,6 +39,7 @@ local CYAN_B='\033[46m'
 local WHITE_B='\033[47m'
 
 local RESET='\033[m'
+local BOLD='\033[1m'
 
 # Change color based on success of previous command
 function color_success() {
@@ -57,7 +58,7 @@ function user_host() {
 }
 
 local PS1L1="\[\$(color_success)\][$TIME_VAR]\[$RESET\]\$(user_host)"
-local PS1L2="\[$B_BLACK\]${PWD_VAR}: \[$RESET\]"
+local PS1L2="\[$BOLD\]${PWD_VAR}: \[$RESET\]"
 PS1="$PS1L1\n\n$PS1L2"
 
 # If this is an xterm set the title to user@host:dir
