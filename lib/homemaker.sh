@@ -1,19 +1,19 @@
 #!/bin/bash
 
-# Eample config:
-
+### Eample config:
+#
 # . homemaker.sh
-
+#
 # DEVICE=desktop
 # INPUT=$HOME/tconf
 # OUTPUT=$HOME
 # GEN_OUT=$INPUT/.gen_files
-
+#
 # hm_init
-
+#
 # hml shell/bashrc .bashrc
 # hml .i3/config i3/config
-
+#
 # hmgl .Xresources ! Xresources/*
 
 # Default values for script parameters.

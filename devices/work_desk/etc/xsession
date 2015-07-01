@@ -10,7 +10,7 @@ setxkbmap dvorak -option ctrl:nocaps
 xrandr --output DP-0 --primary
 xrandr --output DVI-I-1 --rotate left --right-of DP-0
 
-xrdb -merge ~/.Xresources
+[[ -f $HOME/.Xresources ]] && xrdb -I$HOME/tconf -merge $HOME/.Xresources
 
 xsetroot -solid "#101010" &
 
