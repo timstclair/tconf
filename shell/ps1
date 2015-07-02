@@ -57,17 +57,12 @@ function user_host() {
   fi
 }
 
-# Git info
-export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_SHOWUNTRACKEDFILES=1
-export GIT_PS1_SHOWCOLORHINTS=1
-export GIT_PS1_SHOWUPSTREAM="auto"
-
 local PS1L1="\[\$(color_success)\][$TIME_VAR]\[$RESET\]\$(user_host)"
 local PS1L2="\[$BOLD\]${PWD_VAR}: \[$RESET\]"
 PS1="$PS1L1\n\n$PS1L2"
+
 # Use git promt
-PROMPT_COMMAND="__git_ps1 \"$PS1L1\" \"\n\n$PS1L2\" \" :: %s\""
+PROMPT_COMMAND="__git_ps1 \"$PS1L1\n\n\" \"$PS1L2\" \"[%s] \""
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
