@@ -21,4 +21,4 @@
                     :background "gray95")
 
 (when (member "Liberation Mono" (font-family-list))
-  (set-face-attribute 'default nil :font "Liberation Mono-11"))
+  (set-face-attribute 'default nil :font "Liberation Mono-12"))

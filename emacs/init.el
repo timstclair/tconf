@@ -11,11 +11,11 @@
 (setq initial-scratch-message "")   ;; empty initial scratch buffer
 
 ;; Load package manager
-(require 'package)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/")
-             '("melpa" . "http://melpa.org/packages/"))
-(package-initialize)
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list 'package-archives
+               '("melpa" . "http://melpa.org/packages/") t)
+  (package-initialize))
 
 ;; Define some functions
 (defun rel-path (relative-path)  ;; TODO replace with (file-relative-name)
@@ -79,7 +79,7 @@
 ;;
 
 ;; Always use flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;;(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Load configuration modules.
 (load (rel-path "major-modes.el"))
@@ -103,6 +103,7 @@
 (add-to-list 'load-path (rel-path "plugins/rust-mode"))
 (autoload 'rust-mode "rust-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+
 
 ;;
 ;; Create directories for backup / autosave.
