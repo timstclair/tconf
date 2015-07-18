@@ -4,4 +4,4 @@
 ;; make the modeline high contrast
 (setq solarized-high-contrast-mode-line t)
 
-(load-theme solarized-light)
+(load-theme 'solarized-light t)

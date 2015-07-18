@@ -50,7 +50,7 @@ URxvt*font:                 xft:DejaVu Sans Mono:pixelsize=14
 URxvt*boldFont:             xft:DejaVu Sans Mono:bold:pixelsize=14
 ! URxvt*italicFont:         fontname
 ! URxvt*boldItalicFont:     fontname
-! URxvt*intensityStyles:    boolean
+URxvt*intensityStyles:      false       ! Bold font doesnt change color.
 ! URxvt*inputMethod:        name
 ! URxvt*preeditType:        style
 ! URxvt*imLocale:           string

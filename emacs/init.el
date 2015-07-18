@@ -146,6 +146,10 @@
 (defun tramp-set-auto-save ()
   (auto-save-mode -1))
 
+;; Open URLs in chrome
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "google-chrome")
+
 ;;
 ;; General programming settings
 ;;
