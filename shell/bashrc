@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # General bash configuration.
 
 SHELL_NAME=bash
@@ -22,6 +24,11 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+if dircolors > /dev/null; then
+  DIRCOLORS=$TCONF/themes/current-theme/dircolors
+  (test -r $DIRCOLORS && eval "$(dircolors -b $DIRCOLORS)" || eval "$(dircolors -b)")
+fi
+
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
   debian_chroot=$(cat /etc/debian_chroot)
@@ -33,14 +40,19 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
   . /etc/bash_completion
 fi
 
+# Load the config if it exists.
 load() {
-  [ -f "$1" ] && . "$1"
+  if [ -f "$1" ]; then
+    . "$1"
+  fi
 }
 
 # Load modular config
-MODULES="vars functions aliases"
+MODULES="vars functions aliases ps1"
 for MODULE in $MODULES; do
     load "$TCONF/shell/$MODULE"
+    load "$TCONF/local/shell/$MODULE"
+    load "$TCONF/priv/shell/$MODULE"
 done
 
 # Load local configs

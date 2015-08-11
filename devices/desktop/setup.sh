@@ -1,6 +1,4 @@
-#!/bin/bash
-
-. $TCONF/lib/homemaker.sh || exit 1
+# Local setup, called from tconf/setup.sh
 
 INPUT=$TCONF/local
 

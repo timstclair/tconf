@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _expand _complete _ignored
@@ -14,6 +16,8 @@ SAVEHIST=1000
 setopt appendhistory autocd extendedglob notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
+
+setopt shwordsplit  # Treat words in string as array
 
 # Set the non-alphanumeric characters which zsh treats as part of a word.
 export WORDCHARS=''
@@ -55,6 +59,21 @@ $ROOT$PATH$S "
 }
 PROMPT=$(custom_prompt)
 
+# Load the config if it exists.
+load() {
+  if [ -f "$1" ]; then
+    . "$1"
+  fi
+}
 
-[ -f $TCONF/bash/vars ] && source $TCONF/bash/vars
-[ -f $TCONF/bash/aliases ] && source $TCONF/bash/aliases
+# Load modular config
+MODULES="vars functions aliases"
+for MODULE in $MODULES; do
+    load "$TCONF/shell/$MODULE"
+    load "$TCONF/local/shell/$MODULE"
+    load "$TCONF/priv/shell/$MODULE"
+done
+
+# Load local configs
+load "$TCONF/local/shell/bashrc"
+load "$TCONF/priv/shell/bashrc"

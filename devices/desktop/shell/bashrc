@@ -1,9 +1,0 @@
-export PATH=~/bin:$PATH
-export DEVICE=desktop
-export DEVICE_NAME=$DEVICE # Deprecated
-
-# Load modular config
-MODULES="aliases"
-for MODULE in $MODULES; do
-    load "$TCONF/shell/$MODULE"
-done

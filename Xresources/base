@@ -1,0 +1,5 @@
+!! Paths relative to $TCONF/
+!! Merge with xrdb -merge -I$TCONF
+#include "Xresources/font"
+#include "Xresources/urxvt"
+#include "themes/current-theme/Xresources"

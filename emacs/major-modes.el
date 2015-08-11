@@ -29,3 +29,8 @@
                       'whitespace-cleanup
                       nil
                       1)))
+
+;;
+;; ediff-mode
+;;
+(setq ediff-split-window-function 'split-window-horizontally)

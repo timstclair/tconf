@@ -1,5 +1,6 @@
 #!/bin/bash
 # Wrapper around i3status to add custom output
+# TODO: unused
 
 # Order to print commands in
 ORDER="kbd_layout i3status"

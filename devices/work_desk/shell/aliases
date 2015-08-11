@@ -1,0 +1,2 @@
+# Kubernetes
+alias e2e-fast-build='KUBE_RELEASE_RUN_TESTS=n build/release.sh'

@@ -1,19 +1,19 @@
 #!/bin/bash
 
-# Eample config:
-
+### Eample config:
+#
 # . homemaker.sh
-
+#
 # DEVICE=desktop
 # INPUT=$HOME/tconf
 # OUTPUT=$HOME
 # GEN_OUT=$INPUT/.gen_files
-
+#
 # hm_init
-
+#
 # hml shell/bashrc .bashrc
 # hml .i3/config i3/config
-
+#
 # hmgl .Xresources ! Xresources/*
 
 # Default values for script parameters.
@@ -95,7 +95,20 @@ hm_generate_link() {
     hm_link $GEN_DST $DST || return 1
   fi
 
-  hm_generate $GEN_DST $COMMENT $SRCS
+  # Filter SRCS
+  local SOURCES=
+  for SRC in $SRCS; do
+    # Make SRC absolute.
+    if [ "${SRC:0:1}" != "/" ]; then
+      SRC=$INPUT/$SRC
+    fi
+
+    if [ -e $SRC ] && [[ ! $SOURCES =~ $SRC ]]; then
+      SOURCES="$SOURCES $SRC"
+    fi
+  done
+
+  hm_generate $GEN_DST $COMMENT $SOURCES
   hm_link $GEN_DST $DST
 }
 

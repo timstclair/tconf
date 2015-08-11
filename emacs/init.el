@@ -2,17 +2,6 @@
 ;; Global configurations
 ;;
 
-;; Load package manager
-(require 'package)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
-(package-initialize)
-
-;; Define some functions
-(defun rel-path (relative-path)  ;; TODO replace with (file-relative-name)
-  "Return the full path of RELATIVE-PATH, relative to this function call."
-  (concat (file-name-directory (or load-file-name buffer-file-name)) relative-path))
-
 ;; UI settings
 (menu-bar-mode 0)                   ;; disable the menubaar
 (tool-bar-mode 0)                   ;; disable the toolbar
@@ -20,6 +9,18 @@
 (setq inhibit-startup-screen t)     ;; don't show welcome screen
 (setq inhibit-splash-screen t)      ;; don't show splash screen
 (setq initial-scratch-message "")   ;; empty initial scratch buffer
+
+;; Load package manager
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list 'package-archives
+               '("melpa" . "http://melpa.org/packages/") t)
+  (package-initialize))
+
+;; Define some functions
+(defun rel-path (relative-path)  ;; TODO replace with (file-relative-name)
+  "Return the full path of RELATIVE-PATH, relative to this function call."
+  (concat (file-name-directory (or load-file-name buffer-file-name)) relative-path))
 
 ;; UI styles
 (load (rel-path "style.el"))
@@ -78,7 +79,7 @@
 ;;
 
 ;; Always use flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;;(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Load configuration modules.
 (load (rel-path "major-modes.el"))
@@ -102,6 +103,7 @@
 (add-to-list 'load-path (rel-path "plugins/rust-mode"))
 (autoload 'rust-mode "rust-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+
 
 ;;
 ;; Create directories for backup / autosave.
@@ -144,6 +146,10 @@
 (defun tramp-set-auto-save ()
   (auto-save-mode -1))
 
+;; Open URLs in chrome
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "google-chrome")
+
 ;;
 ;; General programming settings
 ;;
@@ -152,7 +158,7 @@
 (defun font-lock-comment-annotations ()
   "Highlight comment annotations."
   (font-lock-add-keywords
-   nil '(("\\<\\(\\(FIX\\(ME\\)?\\|TODO\\):\\)"
+   nil '(("\\<\\(\\(FIX\\(ME\\)?\\|TODO\\)\\)\\(\\>\\|:\\)"
           1 font-lock-warning-face t))))
 (add-hook 'prog-mode-hook 'font-lock-comment-annotations)
 
@@ -174,11 +180,11 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'flycheck-mode)
 
+(add-hook 'haskell-mode-hook
+  (lambda () (eval-after-load 'flycheck '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))))
+
 ;; Ignore compiled Haskell files in filename completions
 (add-to-list 'completion-ignored-extensions ".hi")
-
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
 
 ;;
 ;; sh-mode settings (shell script)
