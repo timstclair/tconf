@@ -1,2 +1,10 @@
 # Kubernetes
-alias e2e-fast-build='KUBE_RELEASE_RUN_TESTS=n build/release.sh'
+alias k8s-fast-build='KUBE_RELEASE_RUN_TESTS=n build/release.sh'
+alias k8s-e2e='go run hack/e2e.go -v'
+function k8s-e2e-run() {
+  if [[ $# == 0 ]]; then
+    go run hack/e2e.go -v -test
+  else
+    go run hack/e2e.go -v -test --test_args="--ginkgo.focus=$1"
+  fi
+}
