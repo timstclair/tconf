@@ -24,7 +24,7 @@ GEN_OUT=$INPUT/.gen_files
 HM_ERROR_MODE=WARNING
 
 hm_init() {
-  if [ $INPUT/local ]; then
+  if [ -e $INPUT/local ]; then
     return
   fi
 
@@ -67,6 +67,10 @@ hm_link() {
     fi
     # Symlink is already set up.
     return 0
+  fi
+
+  if [ ! -e $(dirname "$DST" ) ]; then
+    mkdir -p $(dirname "$DST" )
   fi
 
   ln -s "$SRC" "$DST"
@@ -167,18 +171,28 @@ hm_sect_header() {
   printf "$COMMENT%.0s" {1..100} | head -c 80 ; echo
 }
 
+# Mac OS compatible file mod time
+hm_modtime() {
+  FILE="$1"
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    stat -f "%Sm" -t "%s" "$FILE"
+  else
+    date +%s -r "$FILE"
+  fi
+}
+
 # Check whether any of the SRCS have been modified since DST was created.
 hm_has_changes() {
-  local DST=$1
+  local DST="$1"
   local SRCS=${@:2}
 
-  if [ ! -f $DST ]; then
+  if [ ! -f "$DST" ]; then
     return 0
   fi
 
-  local CREATE_TIME=$(date +%s -r $DST)
+  local CREATE_TIME=$(hm_modtime "$DST")
   for SRC in $SRCS; do
-    local MOD_TIME=$(date +%s -r $SRC)
+    local MOD_TIME=$(hm_modtime "$SRC")
     if (( $MOD_TIME > $CREATE_TIME )); then
       return 0
     fi
