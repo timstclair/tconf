@@ -1,0 +1,8 @@
+export DEVICE=macbook
+
+# homebrew setup
+export PATH=$HOME/homebrew/bin:$PATH:/usr/games/bin
+
+# Go project directory
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin

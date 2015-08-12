@@ -1,5 +1,0 @@
-export DEVICE_NAME=macbook
-
-unalias ls
-
-PATH=$HOME/homebrew/bin:$PATH:/usr/games/bin
