@@ -2,9 +2,10 @@
 
 THEME="${1:-material}"
 
-ln -sfn $TCONF/themes/$THEME $TCONF/themes/current-theme
+cd $TCONF/themes
+ln -sfn $THEME current-theme
 
-if dircolors > /dev/null; then
+if dircolors &> /dev/null; then
   DIRCOLORS=$TCONF/themes/current-theme/dircolors
   (test -r $DIRCOLORS && eval "$(dircolors -b $DIRCOLORS)" || eval "$(dircolors -b)")
 fi

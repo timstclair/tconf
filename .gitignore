@@ -1,5 +1,6 @@
-# symlink
+# symlinks
 local
+themes/current-theme
 
 # Private directory.
 priv
