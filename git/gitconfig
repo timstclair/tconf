@@ -1,0 +1,19 @@
+[core]
+	editor = emacs -nw -q --load \"~/tconf/emacs/min-init.el\"
+[user]
+	name = Tim St. Clair
+	email = stclair@google.com
+[color]
+	ui = true
+[alias]
+	s = status
+	ediff = difftool -y --tool=ediff
+	co = checkout
+	b = branch
+	mb = !git merge-base master $(git rev-parse --abbrev-ref HEAD)
+	sb = status -sb
+	pop = stash pop
+[difftool "ediff"]
+	cmd = emacs -nw -q --load "~/tconf/emacs/min-init.el" --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
+[difftool "ediffclient"]
+	cmd = emacsclient --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
