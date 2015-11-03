@@ -13,6 +13,9 @@ exec --no-startup-id feh --bg-fill .wallpapers/default
 # Hide title bars
 new_window 1pixel
 
+# Default to stacking layout
+workspace_layout stacking
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 

@@ -6,3 +6,5 @@
 
 export EDITOR='emacsclient --alternate-editor="" -c "$@"'
 export TERMINAL='urxvtcd'
+
+export GITHUB_USER=timstclair

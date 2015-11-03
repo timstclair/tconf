@@ -5,6 +5,7 @@ function k8s-e2e-run() {
   if [[ $# == 0 ]]; then
     go run hack/e2e.go -v -test
   else
-    go run hack/e2e.go -v -test --test_args="--ginkgo.focus=$1"
+    go run hack/e2e.go -v -test --test_args="--ginkgo.focus=${1// /\\s}"
   fi
 }
+alias k8s-make-e2e='make WHAT=test/e2e/e2e.test'
