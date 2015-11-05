@@ -10,17 +10,13 @@
 (setq inhibit-splash-screen t)      ;; don't show splash screen
 (setq initial-scratch-message "")   ;; empty initial scratch buffer
 
-;; Load package manager
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (add-to-list 'package-archives
-               '("melpa" . "http://melpa.org/packages/") t)
-  (package-initialize))
-
 ;; Define some functions
 (defun rel-path (relative-path)  ;; TODO replace with (file-relative-name)
   "Return the full path of RELATIVE-PATH, relative to this function call."
   (concat (file-name-directory (or load-file-name buffer-file-name)) relative-path))
+
+;; Load packages
+(load (rel-path "packages.el"))
 
 ;; UI styles
 (load (rel-path "style.el"))
@@ -85,10 +81,10 @@
 (load (rel-path "major-modes.el"))
 
 ;; yasnippets
-(add-to-list 'load-path (rel-path "plugins/yasnippet"))
-(require 'yasnippet)
-(yas-global-mode 1)
-(setq yas/prompt-functions '(yas/ido-prompt yas/dropdown-prompt yas/completing-prompt yas/x-prompt yas/no-prompt))
+;; (add-to-list 'load-path (rel-path "plugins/yasnippet"))
+;; (require 'yasnippet)
+;; (yas-global-mode 1)
+;; (setq yas/prompt-functions '(yas/ido-prompt yas/dropdown-prompt yas/completing-prompt yas/x-prompt yas/no-prompt))
 
 ;; js2 mode
 (if (>= emacs-major-version 24)
@@ -97,7 +93,8 @@
     (autoload 'js2-mode "js2-mode" nil t)
     (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
     ;; turn on yas/minor-mode for js2-mode
-    (add-hook 'js2-mode 'yas-minor-mode-on)))
+    ;; (add-hook 'js2-mode 'yas-minor-mode-on)
+    ))
 
 ;; rust mode
 (add-to-list 'load-path (rel-path "plugins/rust-mode"))
@@ -154,6 +151,12 @@
 ;; General programming settings
 ;;
 
+
+
+;; Load everything in the "modes" directory.
+(dolist (mode-file (directory-files (rel-path "modes") t ".*\.el?$"))
+  (load mode-file))
+
 ;; From https://github.com/bbatsov/prelude/blob/master/modules/prelude-programming.el
 (defun font-lock-comment-annotations ()
   "Highlight comment annotations."
@@ -204,3 +207,13 @@
 
 
 ;; TODO: load local/emacs/init.el && priv/emacs/init.el
+
+
+;; TODO: Migrate as much as possible to use-package
+(use-package company
+  :defer t
+  :init (add-hook 'prog-mode-hook 'company-mode)
+  :config
+  (global-company-mode)
+  (bind-keys :map company-active-map
+    ("<tab>" . company-complete)))
