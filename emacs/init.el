@@ -4,8 +4,9 @@
 
 ;; UI settings
 (menu-bar-mode 0)                   ;; disable the menubaar
-(tool-bar-mode 0)                   ;; disable the toolbar
-(scroll-bar-mode 0)                 ;; disable scrollbars
+(when window-system
+    (tool-bar-mode 0)               ;; disable the toolbar
+    (scroll-bar-mode 0))            ;; disable scrollbars
 (setq inhibit-startup-screen t)     ;; don't show welcome screen
 (setq inhibit-splash-screen t)      ;; don't show splash screen
 (setq initial-scratch-message "")   ;; empty initial scratch buffer

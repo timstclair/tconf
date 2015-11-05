@@ -1,5 +1,5 @@
 [core]
-	editor = emacs -nw -q --load \"~/tconf/emacs/min-init.el\"
+	editor = emacs -nw -q --load \"$HOME/tconf/emacs/min-init.el\"
 [user]
 	name = Tim St. Clair
 	email = stclair@google.com

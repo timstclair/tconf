@@ -6,11 +6,18 @@
 
 ;; UI settings
 (menu-bar-mode 0)                   ;; disable the menubaar
-(tool-bar-mode 0)                   ;; disable the toolbar
-(scroll-bar-mode 0)                 ;; disable scrollbars
+(when window-system
+    (tool-bar-mode 0)               ;; disable the toolbar
+    (scroll-bar-mode 0))            ;; disable scrollbars
 (setq inhibit-startup-screen t)     ;; don't show welcome screen
 (setq inhibit-splash-screen t)      ;; don't show splash screen
 (setq initial-scratch-message "")   ;; empty initial scratch buffer
+
+;; OSX Compatability
+(when (string= system-type "darwin")
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  (prefer-coding-system 'utf-8))
 
 ;; Use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
