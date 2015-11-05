@@ -3,7 +3,6 @@
 ;; Load current theme
 (load-file "~/.tconf/themes/current-theme/emacs.el")
 
-
 (global-hl-line-mode 1)           ;; highlight the current line
 
 (cond ((member "Source Code Pro" (font-family-list))

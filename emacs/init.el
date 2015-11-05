@@ -11,17 +11,13 @@
 (setq inhibit-splash-screen t)      ;; don't show splash screen
 (setq initial-scratch-message "")   ;; empty initial scratch buffer
 
-;; Load package manager
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (add-to-list 'package-archives
-               '("melpa" . "http://melpa.org/packages/") t)
-  (package-initialize))
-
 ;; Define some functions
 (defun rel-path (relative-path)  ;; TODO replace with (file-relative-name)
   "Return the full path of RELATIVE-PATH, relative to this function call."
   (concat (file-name-directory (or load-file-name buffer-file-name)) relative-path))
+
+;; Load packages
+(load (rel-path "packages.el"))
 
 ;; UI styles
 (load (rel-path "style.el"))
@@ -55,12 +51,23 @@
   minibuffer-scroll-window nil
   resize-mini-windows nil)
 
+;; Ignore case when using completion for file names:
+(setq read-file-name-completion-ignore-case t)
+
 ;; Enable some disabled functions
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
 ;; Use y-n instead of yes-no for prompts
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+;; Move to wrapped lines
+(setq line-move-visual t)
+
+;; Automatically revert file if it's changed on disk:
+(global-auto-revert-mode 1)
+;; be quiet about reverting files
+(setq auto-revert-verbose nil)
 
 ;;
 ;; Keybindings
@@ -86,10 +93,10 @@
 (load (rel-path "major-modes.el"))
 
 ;; yasnippets
-(add-to-list 'load-path (rel-path "plugins/yasnippet"))
-(require 'yasnippet)
-(yas-global-mode 1)
-(setq yas/prompt-functions '(yas/ido-prompt yas/dropdown-prompt yas/completing-prompt yas/x-prompt yas/no-prompt))
+;; (add-to-list 'load-path (rel-path "plugins/yasnippet"))
+;; (require 'yasnippet)
+;; (yas-global-mode 1)
+;; (setq yas/prompt-functions '(yas/ido-prompt yas/dropdown-prompt yas/completing-prompt yas/x-prompt yas/no-prompt))
 
 ;; js2 mode
 (if (>= emacs-major-version 24)
@@ -98,7 +105,8 @@
     (autoload 'js2-mode "js2-mode" nil t)
     (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
     ;; turn on yas/minor-mode for js2-mode
-    (add-hook 'js2-mode 'yas-minor-mode-on)))
+    ;; (add-hook 'js2-mode 'yas-minor-mode-on)
+    ))
 
 ;; rust mode
 (add-to-list 'load-path (rel-path "plugins/rust-mode"))
@@ -143,9 +151,10 @@
              (not (string-match tramp-file-name-regexp name)))))
 
 ;; Disable auto save for remote files.
-(require 'tramp)
-(defun tramp-set-auto-save ()
-  (auto-save-mode -1))
+(use-package tramp
+  :config
+  (defun tramp-set-auto-save ()
+    (auto-save-mode -1)))
 
 ;; Open URLs in chrome
 (setq browse-url-browser-function 'browse-url-generic
@@ -154,6 +163,12 @@
 ;;
 ;; General programming settings
 ;;
+
+
+
+;; Load everything in the "modes" directory.
+(dolist (mode-file (directory-files (rel-path "modes") t ".*\.el?$"))
+  (load mode-file))
 
 ;; From https://github.com/bbatsov/prelude/blob/master/modules/prelude-programming.el
 (defun font-lock-comment-annotations ()
@@ -176,16 +191,16 @@
 ;;
 
 ;; See http://sritchie.github.io/2011/09/25/haskell-in-emacs/
-
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'flycheck-mode)
-
-(add-hook 'haskell-mode-hook
-  (lambda () (eval-after-load 'flycheck '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))))
-
-;; Ignore compiled Haskell files in filename completions
-(add-to-list 'completion-ignored-extensions ".hi")
+(use-package haskell-mode
+  :defer t
+  :config
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+  (add-hook 'haskell-mode-hook 'flycheck-mode)
+  (add-hook 'haskell-mode-hook
+    (lambda () (eval-after-load 'flycheck '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))))
+  ;; Ignore compiled Haskell files in filename completions
+  (add-to-list 'completion-ignored-extensions ".hi"))
 
 ;;
 ;; sh-mode settings (shell script)
@@ -205,3 +220,12 @@
 
 
 ;; TODO: load local/emacs/init.el && priv/emacs/init.el
+
+;; TODO: Migrate as much as possible to use-package
+(use-package company
+  :defer t
+  :ensure t
+  :init (add-hook 'prog-mode-hook 'company-mode)
+  :config
+  (bind-keys :map company-mode-map
+    ("<tab>" . company-complete)))
