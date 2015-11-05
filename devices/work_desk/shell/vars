@@ -3,4 +3,4 @@ export DEVICE_NAME=$DEVICE # Deprecated
 
 # Go project directory
 export GOPATH=$HOME/goproj
-export PATH=$PATH:$GOPATH/bin
+export PATH=$GOPATH/bin:$PATH
