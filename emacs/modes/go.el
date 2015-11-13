@@ -14,5 +14,7 @@
   :config
   (add-hook 'go-mode-hook 'flycheck-mode)
   (add-hook 'go-mode-hook 'company-mode)
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (setq gofmt-command "goimports")
   (bind-keys :map go-mode-map
     ("M-." 'godef-jump)))

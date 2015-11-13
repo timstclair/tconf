@@ -25,6 +25,8 @@
 ;; Use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
+(defvaralias 'c-basic-offset 'tab-width)
+(defvaralias 'cperl-indent-level 'tab-width)
 
 ;; Show bad ws
 ;; (require 'whitespace)
@@ -225,7 +227,17 @@
 (use-package company
   :defer t
   :ensure t
+  :diminish company-mode
   :init (add-hook 'prog-mode-hook 'company-mode)
   :config
   (bind-keys :map company-mode-map
-    ("<tab>" . company-complete)))
+    ("<tab>" . company-complete-common)))
+
+(use-package magit
+  :defer t
+  :bind ("M-g M-g" . magit-status)
+  :init (setq magit-last-seen-setup-instructions "1.4.0"))
+
+(use-package flycheck
+  :defer t
+  :diminish flycheck-mode)
