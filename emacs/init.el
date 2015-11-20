@@ -34,6 +34,8 @@
 ;; (setq show-ws-toggle-show-tabs t)
 (setq-default show-trailing-whitespace t)
 
+(toggle-uniquify-buffer-names)
+
 ;; Column numbers
 (column-number-mode 1)
 
@@ -241,3 +243,24 @@
 (use-package flycheck
   :defer t
   :diminish flycheck-mode)
+
+(use-package flyspell
+  :defer t
+  :ensure t
+  :init
+  (add-hook 'markdown-mode-hook 'flyspell-mode)
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode))
+
+(use-package helm
+  :ensure t
+  :diminish helm-mode
+  :init (helm-mode 1)
+  :config
+  (setq
+    helm-quick-update t
+    helm-idle-delay 0.01
+    helm-input-idle-delay 0.01
+    helm-exit-idle-delay 0.1))
+(use-package helm-ls-git
+  :ensure t
+  :bind ("C-x C-d" . helm-browse-project))
