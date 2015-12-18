@@ -16,10 +16,19 @@ message() {
   exit 1
 }
 
+if command -v systemctl >/dev/null 2>&1 ; then
+  # systemd system
+  SHUTDOWN="systemctl poweroff"
+  REBOOT="systemctl reboot"
+else
+  SHUTDOWN="poweroff"
+  REBOOT="reboot"
+fi
+
 case $1 in
   -e) LABEL="Logout"  ; [ -z "$DISPLAY" ] && ACTION="logout" || ACTION="kill $(pgrep X)" ;;
-  -r) LABEL="Restart" ; ACTION="systemctl reboot" ;;
-  -s) LABEL="Shutdown"; ACTION="systemctl poweroff" ;;
+  -r) LABEL="Restart" ; ACTION="$REBOOT" ;;
+  -s) LABEL="Shutdown"; ACTION="$SHUTDOWN" ;;
   *)             message          ;;
 esac
 
