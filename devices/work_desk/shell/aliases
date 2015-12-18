@@ -9,3 +9,4 @@ function k8s-e2e-run() {
   fi
 }
 alias k8s-make-e2e='make WHAT=test/e2e/e2e.test'
+alias _kubectl='_output/dockerized/bin/linux/amd64/kubectl'

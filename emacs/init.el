@@ -244,6 +244,9 @@
   :defer t
   :diminish flycheck-mode)
 
+(when (executable-find "hunspell")
+  (setq-default ispell-program-name "hunspell")
+  (setq-default ispell-really-hunspell t))
 (use-package flyspell
   :defer t
   :ensure t
