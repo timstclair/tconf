@@ -4,7 +4,7 @@
 # from default.
 [ -z $TCONF ] && export TCONF=$HOME/tconf
 
-export EDITOR='emacsclient --alternate-editor="" -c "$@"'
+export EDITOR='emacs -nw -q --load $TCONF/emacs/min-init.el'
 export TERMINAL='urxvtcd'
 
 export GITHUB_USER=timstclair
