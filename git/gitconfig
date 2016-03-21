@@ -6,16 +6,16 @@
 [color]
 	ui = true
 [alias]
-	s = status
-	ediff = difftool -y --tool=ediff
-	co = checkout
 	b = branch
-	mb = !git merge-base master $(git rev-parse --abbrev-ref HEAD)
-	sb = status -sb
-	pop = stash pop
-  squash = !__COMMIT_MSG=$(git log -n 1 --format=%B) && git reset --soft HEAD~1 && git commit -n -m \"$__COMMIT_MSG\"
-	sync = "!$HOME/tconf/git/git-sync.sh"
+	co = checkout
+	ediff = difftool -y --tool=ediff
   last = log -n 1
+	mb = !git merge-base master $(git rev-parse --abbrev-ref HEAD)
+	pop = stash pop
+	s = status
+	sb = status -sb
+	sync = "!$HOME/tconf/git/git-sync.sh"
+  squash = !__COMMIT_MSG=$(git log -n 1 --format=%B) && git reset --soft HEAD~1 && git commit -n -m \"$__COMMIT_MSG\"
 [difftool "ediff"]
 	cmd = emacs -nw -q --load "$HOME/tconf/emacs/min-init.el" --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
 [difftool "ediffclient"]

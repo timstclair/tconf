@@ -9,7 +9,6 @@ function k8s-e2e-run() {
   fi
 }
 alias k8s-make-e2e='make WHAT=test/e2e/e2e.test'
-alias _kubectl='_output/dockerized/bin/linux/amd64/kubectl'
 function k8s-node-proxy() {
   if [[ $# == 0 ]]; then
     NODE=$(kubectl get nodes -o=jsonpath="{.items[0].metadata.name}")
@@ -22,3 +21,6 @@ function k8s-node-proxy() {
 # Go aliases
 alias ago="ag --ignore *_test.go --ignore Godeps -G .*\.go$"
 alias ago-test="ag --ignore Godeps -G .*_test\.go$"
+
+alias graph-png="dot -Tpng -o /tmp/graph.png && google-chrome /tmp/graph.png"
+alias graph-svg="dot -Tsvg -o /tmp/graph.svg && google-chrome /tmp/graph.svg"
