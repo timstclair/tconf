@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "Did you check the new?"
-google-chrome "https://www.archlinux.org/news/"
+echo "Did you check the news?"
+read -rsp $'Press any key to continue...\n' -n1 key
 
 echo "Mounting /boot ..."
 sudo mount /boot

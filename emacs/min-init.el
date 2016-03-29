@@ -37,3 +37,17 @@
 
 ;; Settings commonly used from the commandline
 (setq ediff-split-window-function 'split-window-horizontally)
+
+;; Ediff command line option
+(defun command-line-diff (switch)
+  (let ((file1 (pop command-line-args-left))
+        (file2 (pop command-line-args-left)))
+    (ediff file1 file2)))
+(defun command-line-merge (switch)
+  (let ((file1 (pop command-line-args-left))
+        (file2 (pop command-line-args-left)))
+    (progn
+      (ediff-merge file1 file2)
+      (add-hook 'ediff-quit-hook 'save-buffers-kill-terminal))))
+(add-to-list 'command-switch-alist '("-diff" . command-line-diff))
+(add-to-list 'command-switch-alist '("-merge" . command-line-merge))
