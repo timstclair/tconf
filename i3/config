@@ -174,55 +174,75 @@ bindsym $mod+Shift+J reload
 bindsym $mod+Mod1+BackSpace exit
 
 # resize window (you can also use the mouse for that)
+bindsym $mod+Shift+P mode "resize"
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+  # These bindings trigger as soon as you enter the resize mode
 
-        # They resize the border in the direction you pressed, e.g.
-        # when pressing left, the window is resized so that it has
-        # more space on its left
+  # They resize the border in the direction you pressed, e.g.
+  # when pressing left, the window is resized so that it has
+  # more space on its left
 
-bindsym h resize grow left 10 px or 10 ppt
-bindsym Shift+H resize shrink   left 10 px or 10 ppt
+  bindsym h resize grow left 10 px or 10 ppt
+  bindsym Shift+H resize shrink   left 10 px or 10 ppt
 
-bindsym n resize grow down 10 px or 10 ppt
-bindsym Shift+N resize shrink   down 10 px or 10 pdpt
+  bindsym n resize grow down 10 px or 10 ppt
+  bindsym Shift+N resize shrink   down 10 px or 10 pdpt
 
-bindsym t resize grow up 10 px or 10 ppt
-bindsym Shift+T resize shrink   up 10 px or 10 ppt
+  bindsym t resize grow up 10 px or 10 ppt
+  bindsym Shift+T resize shrink   up 10 px or 10 ppt
 
-bindsym s resize grow right 10 px or 10 ppt
-bindsym Shift+S resize shrink   right 10 px or 10 ppt
+  bindsym s resize grow right 10 px or 10 ppt
+  bindsym Shift+S resize shrink   right 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-bindsym Left resize grow left 10 px or 10 ppt
-bindsym Shift+Left resize shrink   left 10 px or 10 ppt
+          # same bindings, but for the arrow keys
+  bindsym Left resize grow left 10 px or 10 ppt
+  bindsym Shift+Left resize shrink   left 10 px or 10 ppt
 
-bindsym Down resize grow down 10 px or 10 ppt
-bindsym Shift+Down resize shrink   down 10 px or 10 ppt
+  bindsym Down resize grow down 10 px or 10 ppt
+  bindsym Shift+Down resize shrink   down 10 px or 10 ppt
 
-bindsym Up resize grow up 10 px or 10 ppt
-bindsym Shift+Up resize shrink   up 10 px or 10 ppt
+  bindsym Up resize grow up 10 px or 10 ppt
+  bindsym Shift+Up resize shrink   up 10 px or 10 ppt
 
-bindsym Right resize grow right 10 px or 10 ppt
-bindsym Shift+Right resize shrink   right 10 px or 10 ppt
+  bindsym Right resize grow right 10 px or 10 ppt
+  bindsym Shift+Right resize shrink   right 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
-bindsym Return mode "default"
-bindsym Escape mode "default"
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
-bindsym $mod+Shift+P mode "resize"
+# Solarized dark colors
+# class                 border  backgr. text    indicator child_border
+client.focused          #073945 #073642 #839496 #839496
+client.focused_inactive #404040 #333333 #839496 #839496
+client.unfocused        #262626 #1c1c1c #839496 #839496
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
   # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
   font pango:DejaVu Sans Mono 10
-  status_command i3status -c ~/tconf/i3/i3status.conf
+  separator_symbol " | "
+  status_command $HOME/tconf/i3/i3bar.sh
   position top
+  tray_output primary
 
   # Order named workspaces
   strip_workspace_numbers yes
 
-  tray_output primary
+  # Solarized dark theme
+  colors {
+    statusline #839496
+    #                  border  backgr. text
+    focused_workspace  #002b36 #859900 #002b36
+    active_workspace   #002b36 #859900 #002b36
+    inactive_workspace #002b36 #002b36 #586e75
+    urgent_workspace   #002b36 #dc322f #002b36
+  }
+
+  # Disable interaction
+  bindsym button1 nop
+  bindsym button4 nop
+  bindsym button5 nop
 }

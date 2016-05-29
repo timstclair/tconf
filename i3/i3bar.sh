@@ -1,41 +1,30 @@
 #!/bin/bash
 # Wrapper around i3status to add custom output
-# TODO: unused
 
-# Order to print commands in
-ORDER="kbd_layout i3status"
+set -e
 
 # Command to run i3status with
-I3STATUS_CMD="i3status -c ~/.i3/i3status.conf"
-
-# Output delimiter
-DELIM=" | "
-
+I3STATUS_CMD="i3status -c $HOME/tconf/i3/i3status.conf"
 
 function kbd_layout() {
-  if expr match "$(setxkbmap -query | grep layout)" 'layout: *dvorak' > /dev/null; then
-    echo "DV"
-  else
-    echo "US"
-  fi
+  LAYOUT="$(setxkbmap -query | awk '/layout:/ {print $2}')"
+  printf '{"full_text":"%s","short_text":"%.2s"}' "$LAYOUT" "$LAYOUT"
 }
 
 # Generate the output
-$I3STATUS_CMD | while :
-do
-  read I3STATUS || exit 1
-  OUTPUT=""
-  for CMD in $ORDER; do
-    if [ "$CMD" = "i3status" ]; then
-      OUTPUT="${OUTPUT}${I3STATUS}"
-    else
-      OUTPUT="${OUTPUT}$($CMD)"
-    fi
-    OUTPUT="${OUTPUT}${DELIM}"
+eval "$I3STATUS_CMD" | (
+  # Print the header content
+  read HDR && echo "$HDR"     # { "version": 1 }
+  read START && echo "$START" # [
+
+  while :
+  do
+    read I3STATUS
+    I3STATUS="${I3STATUS#*[}" # strip ,[
+    I3STATUS="${I3STATUS%]*}" # strip ],
+
+    # TODO: Add local & priv modules
+    OUTPUT="[$(kbd_layout),${I3STATUS}],"
+    echo "$OUTPUT"
   done
-
-  # Strip trailing delimiter
-  echo ${OUTPUT:0:-${#DELIM}} || exit 1
-done
-
-echo "DONE"
+)
