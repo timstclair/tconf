@@ -18,7 +18,7 @@ hml Xresources/base .Xresources
 
 # git configuration
 hml git/gitconfig .gitconfig
-hml git/gitignore .gitignore 
+hml git/gitignore .gitignore
 
 # Import local configs.
 [ -f $INPUT/local/$CONFIG ] && . $INPUT/local/$CONFIG
