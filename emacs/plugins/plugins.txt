@@ -1,7 +1,0 @@
-# List of repositories for plugins
-
-# YaSnippets - Emacs snippets and completion
-https://github.com/capitaomorte/yasnippet
-
-# JS2 - Javascript mode
-https://github.com/mooz/js2-mode

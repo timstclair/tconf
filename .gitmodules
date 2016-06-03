@@ -1,9 +1,0 @@
-[submodule "emacs/plugins/js2-mode"]
-	path = emacs/plugins/js2-mode
-	url = https://github.com/mooz/js2-mode
-[submodule "emacs/plugins/yasnippet"]
-	path = emacs/plugins/yasnippet
-	url = https://github.com/capitaomorte/yasnippet
-[submodule "emacs/plugins/rust-mode"]
-	path = emacs/plugins/rust-mode
-	url = https://github.com/rust-lang/rust-mode.git
