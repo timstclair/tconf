@@ -67,3 +67,7 @@ done
 # Load local configs
 load "$TCONF/local/shell/bashrc"
 load "$TCONF/priv/shell/bashrc"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+[[ -s "/usr/local/google/home/stclair/.gvm/scripts/gvm" ]] && source "/usr/local/google/home/stclair/.gvm/scripts/gvm"

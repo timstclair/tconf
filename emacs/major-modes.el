@@ -34,3 +34,6 @@
 ;; ediff-mode
 ;;
 (setq ediff-split-window-function 'split-window-horizontally)
+
+;; sh-mode
+(add-hook 'sh-mode-hook (lambda () (sh-electric-here-document-mode -1)))

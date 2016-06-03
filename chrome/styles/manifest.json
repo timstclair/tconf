@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+
+  "name": " tconf-styles",
+  "description": "Load tconf styles",
+  "version": "1.0",
+
+  "content_scripts": [
+    {
+      "matches": ["*://github.com/*"],
+      "css": ["github.css"]
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient"
-export TERMINAL="urxvtcd"
+export TERMINAL="urxvt"
 export DESKTOP_SESSION=gnome
 
 setxkbmap dvorak -option ctrl:nocaps

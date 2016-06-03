@@ -27,6 +27,7 @@
 (setq-default tab-width 2)
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
+(defvaralias 'js-indent-level 'tab-width)
 
 ;; Show bad ws
 ;; (require 'whitespace)
@@ -44,6 +45,7 @@
 
 ;; Default line length is 100 chars
 (setq-default fill-column 100)
+(setq-default comment-fill-column 80)
 
 ;; Require a final newline in a file, to avoid confusing some tools
 (setq require-final-newline t)
@@ -164,11 +166,12 @@
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "google-chrome")
 
+;; Open use view-mode with read-only buffers.
+(setq-default view-read-only t)
+
 ;;
 ;; General programming settings
 ;;
-
-
 
 ;; Load everything in the "modes" directory.
 (dolist (mode-file (directory-files (rel-path "modes") t ".*\.el?$"))
@@ -237,7 +240,7 @@
 
 (use-package magit
   :defer t
-  :bind ("M-g M-g" . magit-status)
+  :bind ("M-g M-s" . magit-status)
   :init (setq magit-last-seen-setup-instructions "1.4.0"))
 
 (use-package flycheck

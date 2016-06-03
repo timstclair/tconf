@@ -4,3 +4,6 @@ exec --no-startup-id emacs --daemon
 
 # Attempt to fix mouse
 exec --no-startup-id /usr/local/google/home/stclair/scripts/fix_mouse_buttons.sh
+
+# Auto-lock screen
+exec --no-startup-id ~/.tconf/local/scripts/autolock.sh

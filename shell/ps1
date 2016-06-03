@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Custom PS1
 
 fancy_prompt() {
@@ -42,7 +44,7 @@ local RESET='\033[m'
 local BOLD='\033[1m'
 
 # Change color based on success of previous command
-function color_success() {
+function __color_success() {
   if [ $? = 0 ]; then
     echo -en '\033[0;32m'  # Green
   else
@@ -51,28 +53,39 @@ function color_success() {
 }
 
 # Conditionally print user & host name
-function user_host() {
+function __user_host() {
+  # PREFIX=$1
+  # SUFFIX=$2
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    echo -en " <${USER}@${HOSTNAME}>"
+    echo -en "${1}${USER}@${HOSTNAME}${2}"
   fi
 }
 
-local PS1L1="\[\$(color_success)\][$TIME_VAR]\[$RESET\]\$(user_host)"
-local PS1L2="\[$BOLD\]${PWD_VAR}: \[$RESET\]"
-PS1="$PS1L1\n\n$PS1L2"
+# Project directory
+function __project() {
+  if [ "$__G_PROJECT_DIR" != "" ] && [[ "$PWD" =~ "$__G_PROJECT_DIR" ]]; then
+    echo -en "${__G_PROJECT}${PWD#$__G_PROJECT_DIR}"
+  else
+    echo -en "\w"
+  fi
+}
 
-# Use git promt
-PROMPT_COMMAND="__git_ps1 \"$PS1L1\n\n\" \"$PS1L2\" \"[%s] \""
+local PS1_PREFIX="\[\$(__color_success)\][$TIME_VAR]\[$RESET\]\$(__user_host ' <' '>')
 
-# If this is an xterm set the title to user@host:dir
+"
+local PS1_SUFFIX="\[$BOLD\]\$(__project): \[$RESET\]"
+
+# Set the terminal title.
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\033]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+xterm*|*rxvt*)
+    PS1_SUFFIX="$PS1_SUFFIX\[\e]2;\$(__user_host '' ': ')\$(__project)\a\]"
     ;;
 *)
     ;;
 esac
 
+# Use git promt
+PROMPT_COMMAND="__git_ps1 \"$PS1_PREFIX\" \"$PS1_SUFFIX\" \"[%s] \""
 }
 
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
