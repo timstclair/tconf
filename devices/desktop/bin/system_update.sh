@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 echo "Did you check the news?"
 read -rsp $'Press any key to continue...\n' -n1 key
 
