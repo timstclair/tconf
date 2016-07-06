@@ -19,13 +19,16 @@ workspace_layout stacking
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Move PRIMARY (selection) clipboard to CLIPBOARD (ctrl+c)
+bindsym Control+Shift+C exec sh -c "xclip -o | xclip -selection clipboard -i"
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
 # start favorite apps
 bindsym $mod+F3 exec google-chrome
-bindsym $mod+F1 exec emacsclient --alternate-editor="" -c "$@"
-bindsym $mod+Shift+F1 exec emacs
+bindsym $mod+F1 exec emacs
+bindsym $mod+Shift+F1 exec emacsclient --alternate-editor="" -c "$@"
 
 # Toggle dvorak
 bindsym $mod+Scroll_Lock exec ~/.tconf/scripts/toggle_dvorak.sh
