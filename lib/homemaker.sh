@@ -135,7 +135,7 @@ hm_generate() {
 
   hm_file_header "$COMMENT" "${SRCS[@]}" >> "$DST"
 
-  for SRC in "${SRCS[@]}"; do
+  for SRC in ${SRCS[@]}; do
     hm_sect_header "$COMMENT" "$SRC" >> "$DST"
     cat "$SRC" >> "$DST"
   done
