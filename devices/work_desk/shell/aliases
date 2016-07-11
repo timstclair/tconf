@@ -74,6 +74,19 @@ function k8s-kubelet-log() {
   gcloud compute copy-files --zone=$ZONE "${NODE}:/var/log/kubelet.log" "$DST"
 }
 
+# Grep for a branch across k8s{1,2,3}
+function k8s-branch() {
+  pushd . > /dev/null
+  RESULT=1
+  for BR in k8s{1,2,3}; do
+    cd "$HOME/go/$BR/src/k8s.io/kubernetes"
+    git branch | awk "{print \"$BR:\", \$0}" | grep $*
+    RESULT=$((RESULT * $?))
+  done
+  popd > /dev/null
+  return $RESULT
+}
+
 # K8s deploy environment
 alias k8s-env='echo ${K8S_ENV:-default}'
 alias k8s-env-small='source $HOME/k8s/devel/config/config-small.sh && k8s-env'
