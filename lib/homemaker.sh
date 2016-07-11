@@ -110,7 +110,7 @@ hm_generate_link() {
     fi
   done
 
-  hm_generate "$GEN_DST" "$COMMENT" "$SOURCES"
+  hm_generate "$GEN_DST" "$COMMENT" $SOURCES
   hm_link "$GEN_DST" "$DST"
 }
 
