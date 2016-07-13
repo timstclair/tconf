@@ -31,8 +31,8 @@ bindsym $mod+F1 exec emacs
 bindsym $mod+Shift+F1 exec emacsclient --alternate-editor="" -c "$@"
 
 # Toggle dvorak
-bindsym $mod+Scroll_Lock exec ~/.tconf/scripts/toggle_dvorak.sh
-exec --no-startup-id setxkbmap dvorak
+bindsym $mod+Scroll_Lock exec ~/.tconf/scripts/kblayout.sh
+exec --no-startup-id $HOME/tconf/scripts/kblayout.sh dvorak
 
 # Lockscreen
 bindsym $mod+Escape exec i3lock -c 000000
