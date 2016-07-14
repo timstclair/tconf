@@ -20,6 +20,9 @@ hml Xresources/base .Xresources
 hml git/gitconfig .gitconfig
 hml git/gitignore .gitignore
 
+# gpg configuration
+hml gpg/gpg.conf .gnupg/gpg.conf
+
 # Import local configs.
 [ -f $INPUT/local/$CONFIG ] && . $INPUT/local/$CONFIG
 [ -f $INPUT/priv/$CONFIG ] && . $INPUT/priv/$CONFIG
