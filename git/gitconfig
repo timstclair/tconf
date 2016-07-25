@@ -13,6 +13,7 @@
   last = log -n 1
 	mb = !git merge-base master $(git rev-parse --abbrev-ref HEAD)
 	pop = stash pop
+  stashq = -c commit.gpgsign=false stash
 	s = status
 	sb = status -sb
 	sync = "!$HOME/tconf/git/git-sync.sh"
