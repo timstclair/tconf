@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TCONF=${TCONF:=$HOME/tconf}
+
 . $TCONF/lib/homemaker.sh || exit 1
 
 INPUT=$HOME/tconf

@@ -25,3 +25,5 @@
 	cmd = emacsclient --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
 [commit]
 	gpgsign = true
+[init]
+	templatedir = ~/.git-templates
