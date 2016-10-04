@@ -50,8 +50,8 @@ if ! shopt -oq posix; then
 fi
 
 # Set up gpg-agent
-if [ -f "$TCONF/gpg/gpg-agent-info" ]; then
-  . "$TCONF/gpg/gpg-agent-info"
+if [ -f "$HOME/.gpg-agent-info" ]; then
+  . "$HOME/.gpg-agent-info"
 else
   >&2 echo "Warning: gpg-agent-info not found. Run:"
   >&2 echo "  gpg-agent --daemon --enable-ssh-support --write-env-file ~/.gpg-agent-info"
