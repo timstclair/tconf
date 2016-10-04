@@ -17,7 +17,7 @@
 # hmgl .Xresources ! Xresources/*
 
 # Default values for script parameters.
-DEVICE="" # No default, must be set.
+DEVICE=${DEVICE:-""} # No default, must be set.
 INPUT=$HOME/tconf
 OUTPUT=$HOME
 GEN_OUT=$INPUT/.gen_files
