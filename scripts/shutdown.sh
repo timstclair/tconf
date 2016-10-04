@@ -26,7 +26,7 @@ else
 fi
 
 case $1 in
-  -e) LABEL="Logout"  ; [ -z "$DISPLAY" ] && ACTION="logout" || ACTION="kill $(pgrep X)" ;;
+  -e) LABEL="Logout"  ; [ -z "$DISPLAY" ] && ACTION="i3-msg exit" || ACTION="kill $(pgrep X)" ;;
   -r) LABEL="Restart" ; ACTION="$REBOOT" ;;
   -s) LABEL="Shutdown"; ACTION="$SHUTDOWN" ;;
   *)             message          ;;
