@@ -239,6 +239,8 @@
   :ensure t
   :diminish helm-mode
   :init (helm-mode 1)
+  :bind ("C-x C-f" . helm-find-files)
+  :bind ("M-x" . helm-M-x)
   :config
   (setq
     helm-quick-update t
