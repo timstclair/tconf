@@ -43,6 +43,6 @@ echo "Generating modular configs..."
 $TCONF/scripts/gen-config.sh --overwrite
 
 # Check that symlink is up-to-date
-if [ "$TCONF" != "$HOME/.tconf" ]; then
-  ln -snf $TCONF $HOME/.tconf
+if [ "$TCONF" != "$HOME/tconf" ]; then
+  ln -snf $TCONF $HOME/tconf
 fi

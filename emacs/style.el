@@ -1,7 +1,7 @@
 ;; GUI style configuration.
 
 ;; Load current theme
-(load-file "~/.tconf/themes/current-theme/emacs.el")
+(load-file "~/tconf/themes/current-theme/emacs.el")
 
 (global-hl-line-mode 1)           ;; highlight the current line
 

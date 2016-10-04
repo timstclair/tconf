@@ -31,17 +31,17 @@ bindsym $mod+F1 exec emacs
 bindsym $mod+Shift+F1 exec emacsclient --alternate-editor="" -c "$@"
 
 # Toggle dvorak
-bindsym $mod+Scroll_Lock exec ~/.tconf/scripts/kblayout.sh
+bindsym $mod+Scroll_Lock exec ~/tconf/scripts/kblayout.sh
 exec --no-startup-id $HOME/tconf/scripts/kblayout.sh dvorak
 
 # Lockscreen
 bindsym $mod+Escape exec i3lock -c 000000
 # Logout
-bindsym $mod+Shift+Escape exec ~/.tconf/scripts/shutdown.sh -e
+bindsym $mod+Shift+Escape exec ~/tconf/scripts/shutdown.sh -e
 # Shutdown
-bindsym $mod+Mod1+Escape exec ~/.tconf/scripts/shutdown.sh -s
+bindsym $mod+Mod1+Escape exec ~/tconf/scripts/shutdown.sh -s
 # Restart
-bindsym $mod+Mod1+Shift+Escape exec ~/.tconf/scripts/shutdown.sh -r
+bindsym $mod+Mod1+Shift+Escape exec ~/tconf/scripts/shutdown.sh -r
 
 # Screenshot (print screen)
 bindsym Print exec scrot -e 'mkdir -p ~/tmp/screenshots && mv $f ~/tmp/screenshots/$f'
