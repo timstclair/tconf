@@ -23,6 +23,9 @@ eval "$I3STATUS_CMD" | (
     I3STATUS="${I3STATUS#*[}" # strip ,[
     I3STATUS="${I3STATUS%]*}" # strip ],
 
+    # Filter out hidden components.
+    I3STATUS="$(echo "$I3STATUS" | sed -r 's/\{[^}]*"<HIDE>"[^}]*\},?//g')"
+
     # TODO: Add local & priv modules
     OUTPUT="[$(kbd_layout),${I3STATUS}],"
     echo "$OUTPUT"
