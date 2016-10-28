@@ -22,6 +22,10 @@
     ("PR-QUEUE" (:inherit org-done))
     ("REVIEW" (:inherit warning))
     ("STARTED" (:inherit warning))))
+(setq org-priority-faces
+  '((?A :inherit font-lock-warning-face)
+    (?B :inherit warning :weight bold)))
+
 
 (custom-set-faces
   '(org-headline-done ((t (:foreground nil :strike-through t))))
