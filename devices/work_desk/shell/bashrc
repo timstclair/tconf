@@ -2,3 +2,13 @@
 if [ -z "$SSH_AUTH_SOCK" ]; then
     eval $(ssh-agent -s)
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /home/stclair/bin/google-cloud-sdk/path.bash.inc ]; then
+  source '/home/stclair/bin/google-cloud-sdk/path.bash.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f /home/stclair/bin/google-cloud-sdk/completion.bash.inc ]; then
+  source '/home/stclair/bin/google-cloud-sdk/completion.bash.inc'
+fi
