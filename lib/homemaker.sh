@@ -105,9 +105,11 @@ hm_generate_link() {
       SRC=$INPUT/$SRC
     fi
 
-    if [ -e "$SRC" ] && [[ ! $SOURCES =~ $SRC ]]; then
-      SOURCES="$SOURCES $SRC"
-    fi
+    for FILE in $SRC; do  # Expand wildcards
+      if [ -e "$FILE" ] && [[ ! $SOURCES =~ $FILE ]]; then
+        SOURCES="$SOURCES $FILE"
+      fi
+    done
   done
 
   hm_generate "$GEN_DST" "$COMMENT" $SOURCES

@@ -11,7 +11,7 @@ CONFIG=setup.sh
 hm_init
 
 # i3 configuration
-hmgl .i3/config "#" {,local/,priv/}i3/*
+hmgl .i3/config "#" {,local/,priv/}i3/{config,win_rules,keys}
 
 # shell configuration
 hml shell/bashrc .bashrc
