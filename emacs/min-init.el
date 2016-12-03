@@ -51,3 +51,6 @@
       (add-hook 'ediff-quit-hook 'save-buffers-kill-terminal))))
 (add-to-list 'command-switch-alist '("-diff" . command-line-diff))
 (add-to-list 'command-switch-alist '("-merge" . command-line-merge))
+
+(package-initialize)
+
