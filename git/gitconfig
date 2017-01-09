@@ -27,3 +27,5 @@
 	gpgsign = true
 [init]
 	templatedir = ~/.git-templates
+[http]
+	followRedirects = true

@@ -16,4 +16,11 @@
   (add-hook 'go-mode-hook 'company-mode)
   (add-hook 'before-save-hook 'gofmt-before-save)
   (setq gofmt-command "goimports")
-  (setq go-command "godep go"))
+  (setq go-command "go"))
+
+(use-package go-guru
+  :ensure t
+  :config
+  (setq go-guru-command "guru")) ;; FIXME - set absolute path
+(use-package go-rename
+  :ensure t)
