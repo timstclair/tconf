@@ -44,9 +44,11 @@ bindsym $mod+Mod1+Escape exec ~/tconf/scripts/shutdown.sh -s
 bindsym $mod+Mod1+Shift+Escape exec ~/tconf/scripts/shutdown.sh -r
 
 # Screenshot (print screen)
-bindsym Print exec scrot -e 'mkdir -p ~/tmp/screenshots && mv $f ~/tmp/screenshots/$f'
+bindsym --release Print exec scrot -e 'mkdir -p ~/tmp/screenshots && mv $f ~/tmp/screenshots/$f'
 # Select Screenshot
-bindsym Shift+Print exec scrot -s -e 'mv $f ~/tmp/$f'
+bindsym --release Shift+Print exec scrot -s -e 'mkdir -p ~/tmp/screenshots && mv $f ~/tmp/screenshots/$f'
+# Screenshot current window
+bindsym --release $mod+Print exec scrot -u -d 2 -e 'mkdir -p ~/tmp/screenshots && mv $f ~/tmp/screenshots/$f'
 
 # kill focused window
 bindsym $mod+Shift+quotedbl kill
