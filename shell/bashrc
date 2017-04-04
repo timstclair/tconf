@@ -49,20 +49,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# If ssh-agent isn't running, start it.
-if ! pgrep -x -u "${USER}" ssh-agent > /dev/null; then
-  ssh-agent > $HOME/.ssh-agent-info
-fi
-
-# If gpg-agent isn't running, start it.
-if ! pgrep -x -u "${USER}" gpg-agent > /dev/null; then
-  gpg-agent --daemon --enable-ssh-support --write-env-file ${HOME}/.gpg-agent-info > /dev/null
-fi
-. "${HOME}/.gpg-agent-info" > /dev/null
-. "${HOME}/.ssh-agent-info" > /dev/null
-export GPG_AGENT_INFO
-export SSH_AUTH_SOCK
-
 # Load the config if it exists.
 load() {
   if [ -f "$1" ]; then
