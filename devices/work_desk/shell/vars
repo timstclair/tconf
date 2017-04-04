@@ -1,8 +1,4 @@
 export DEVICE=work_desk
 export DEVICE_NAME=$DEVICE # Deprecated
 
-# Go project directory
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
-
 export BROWSER=google-chrome
