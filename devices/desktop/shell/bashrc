@@ -1,4 +1,2 @@
 # If gpg-agent isn't running, start it.
-if ! pgrep -x -u "${USER}" gpg-agent > /dev/null; then
-  gpg-agent --daemon --enable-ssh-support > /dev/null
-fi
+gpg-connect-agent /bye >/dev/null 2>&1
