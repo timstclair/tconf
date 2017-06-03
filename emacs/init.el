@@ -250,3 +250,8 @@
 (use-package helm-ls-git
   :ensure t
   :bind ("C-x C-d" . helm-browse-project))
+
+(use-package web-mode
+  :ensure t
+  :mode (("\\.html?\\'" . web-mode)
+          ("\\.jinja\\'" . web-mode)))

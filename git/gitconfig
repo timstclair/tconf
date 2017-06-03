@@ -29,3 +29,4 @@
 	templatedir = ~/.git-templates
 [http]
 	followRedirects = true
+	cookiefile = $HOME/.gitcookies
