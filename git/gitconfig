@@ -30,3 +30,9 @@
 [http]
 	followRedirects = true
 	cookiefile = $HOME/.gitcookies
+[advice]
+	statusHints = false
+[diff]
+	renames = copies
+[push]
+	default = tracking
